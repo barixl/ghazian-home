@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghazian — Curtain Knobs & Brackets</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --cream: #F7F3EE;
+            --warm-white: #FDFAF7;
+            --charcoal: #1C1C1E;
+            --mid: #5A5A5A;
+            --light: #9A9A9A;
+            --border: #E5DDD5;
+            --gold: #B8860B;
+            --gold-light: #F0D080;
+            --red: #C0392B;
+            --green: #2D5A27;
+            --card: #fff;
+            --shadow: 0 2px 16px rgba(0, 0, 0, .07);
+            --shadow-hover: 0 8px 32px rgba(0, 0, 0, .13)
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            min-height: 100vh
+        }
+
+        /* NAV */
+        nav {
+            background: var(--charcoal);
+            padding: 0 40px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            cursor: pointer;
+            text-decoration: none;
+            line-height: 1
+        }
+
+        .nav-logo span {
+            color: #fff;
+            font-weight: 400;
+            font-size: .7rem;
+            display: block;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif
+        }
+
+        .nav-count {
+            color: #666;
+            font-size: .8rem
+        }
+
+        /* HERO */
+        .hero {
+            background: var(--charcoal);
+            padding: 60px 40px 52px;
+            text-align: center
+        }
+
+        .hero-eyebrow {
+            font-size: .68rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 14px
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 14px
+        }
+
+        .hero p {
+            color: #777;
+            font-size: .9rem;
+            max-width: 440px;
+            margin: 0 auto 28px;
+            line-height: 1.7
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px
+        }
+
+        .hero-stat strong {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            color: var(--gold-light)
+        }
+
+        .hero-stat span {
+            font-size: .65rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #555;
+            margin-top: 2px;
+            display: block
+        }
+
+        /* SHOP WRAPPER */
+        .shop-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 36px 32px
+        }
+
+        /* FILTERS */
+        .filters-bar {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin-bottom: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: flex-end
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1;
+            min-width: 150px
+        }
+
+        .filter-group label {
+            font-size: .68rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--light);
+            font-weight: 500
+        }
+
+        .filter-group input,
+        .filter-group select {
+            border: 1px solid var(--border);
+            background: #fff;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: .85rem;
+            font-family: 'Inter', sans-serif;
+            color: var(--charcoal);
+            outline: none;
+            transition: border-color .2s;
+            appearance: none
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            border-color: var(--gold)
+        }
+
+        .filter-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%23999' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 32px;
+            cursor: pointer
+        }
+
+        .reset-btn {
+            border: 1px solid var(--border);
+            background: transparent;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: .78rem;
+            color: var(--mid);
+            cursor: pointer;
+            transition: all .2s;
+            font-family: 'Inter', sans-serif
+        }
+
+        .reset-btn:hover {
+            border-color: var(--charcoal);
+            color: var(--charcoal)
+        }
+
+        /* COLOR PILLS */
+        .color-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 22px
+        }
+
+        .color-pill {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 11px 4px 7px;
+            border-radius: 999px;
+            border: 1.5px solid var(--border);
+            background: #fff;
+            cursor: pointer;
+            font-size: .72rem;
+            font-weight: 500;
+            color: var(--mid);
+            transition: all .18s;
+            user-select: none
+        }
+
+        .color-pill:hover {
+            border-color: var(--charcoal);
+            color: var(--charcoal)
+        }
+
+        .color-pill.active {
+            border-color: var(--charcoal);
+            background: var(--charcoal);
+            color: #fff
+        }
+
+        .color-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 1px solid rgba(0, 0, 0, .12)
+        }
+
+        /* PRODUCT GRID */
+        .shop-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px
+        }
+
+        .shop-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem
+        }
+
+        .shop-title em {
+            font-style: normal;
+            color: var(--light);
+            font-family: 'Inter', sans-serif;
+            font-size: .82rem;
+            font-weight: 400;
+            margin-left: 8px
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 18px
+        }
+
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform .22s, box-shadow .22s, border-color .22s
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: #D4B896
+        }
+
+        .product-card-img {
+            width: 100%;
+            height: 190px;
+            position: relative;
+            overflow: hidden;
+            background: #f5f5f5
+        }
+
+        .product-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+            transition: transform .3s
+        }
+
+        .product-card:hover .product-card-img img {
+            transform: scale(1.04)
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--red);
+            color: #fff;
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            padding: 3px 7px;
+            border-radius: 4px
+        }
+
+        .product-card-body {
+            padding: 14px;
+            border-top: 1px solid var(--border)
+        }
+
+        .product-card-color {
+            font-size: .68rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--light);
+            margin-bottom: 3px
+        }
+
+        .product-card-title {
+            font-size: .84rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            line-height: 1.4;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden
+        }
+
+        .product-card-pricing {
+            display: flex;
+            align-items: baseline;
+            gap: 7px
+        }
+
+        .price-current {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--charcoal)
+        }
+
+        .price-mrp {
+            font-size: .72rem;
+            color: var(--light);
+            text-decoration: line-through
+        }
+
+        .pack-tag {
+            margin-left: auto;
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: .65rem;
+            color: var(--mid);
+            padding: 2px 6px;
+            font-weight: 500
+        }
+
+        /* EMPTY */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--light)
+        }
+
+        .empty-state h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--mid);
+            margin-bottom: 8px
+        }
+
+        /* PRODUCT PAGE */
+        #product-page {
+            display: none;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 32px 80px
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: .78rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--mid);
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+            margin-bottom: 32px;
+            transition: color .2s;
+            font-family: 'Inter', sans-serif
+        }
+
+        .back-btn:hover {
+            color: var(--charcoal)
+        }
+
+        .back-btn svg {
+            transition: transform .2s
+        }
+
+        .back-btn:hover svg {
+            transform: translateX(-3px)
+        }
+
+        .product-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: start
+        }
+
+        /* IMAGE GALLERY */
+        .product-visual {
+            position: sticky;
+            top: 88px
+        }
+
+        .main-image-box {
+            background: var(--warm-white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 10px;
+            position: relative
+        }
+
+        .main-image-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            padding: 16px;
+            transition: opacity .2s
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .thumb {
+            width: 62px;
+            height: 62px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color .18s;
+            background: #fff;
+            flex-shrink: 0
+        }
+
+        .thumb:hover,
+        .thumb.active {
+            border-color: var(--charcoal)
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 4px
+        }
+
+        /* PRODUCT INFO */
+        .product-brand {
+            font-size: .68rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 9px;
+            font-weight: 600
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55rem;
+            line-height: 1.3;
+            color: var(--charcoal);
+            margin-bottom: 18px
+        }
+
+        .product-pricing-block {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 6px
+        }
+
+        .product-price {
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: var(--charcoal)
+        }
+
+        .product-mrp {
+            font-size: .95rem;
+            color: var(--light);
+            text-decoration: line-through
+        }
+
+        .product-discount-pill {
+            background: #FEF3C7;
+            color: #92400E;
+            font-size: .72rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 999px
+        }
+
+        .product-savings {
+            font-size: .78rem;
+            color: var(--green);
+            font-weight: 500;
+            margin-bottom: 22px
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 24px
+        }
+
+        .meta-item {
+            background: var(--warm-white);
+            padding: 13px 15px
+        }
+
+        .meta-item label {
+            display: block;
+            font-size: .62rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--light);
+            margin-bottom: 3px
+        }
+
+        .meta-item value {
+            font-size: .88rem;
+            font-weight: 500;
+            color: var(--charcoal)
+        }
+
+        .stock-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .73rem;
+            color: var(--green);
+            font-weight: 500;
+            margin-bottom: 20px
+        }
+
+        .stock-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green)
+        }
+
+        .stock-indicator.low {
+            color: #c0392b
+        }
+
+        .stock-indicator.low .stock-dot {
+            background: #c0392b
+        }
+
+        .btn-flipkart {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            background: #2874f0;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 13px 24px;
+            font-size: .88rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s, transform .15s;
+            font-family: 'Inter', sans-serif
+        }
+
+        .btn-flipkart:hover {
+            background: #1a5fcc;
+            transform: translateY(-1px)
+        }
+
+        .sku-note {
+            font-size: .7rem;
+            color: var(--light);
+            text-align: center;
+            margin-top: 8px
+        }
+
+        /* RELATED */
+        .related-section {
+            margin-top: 56px;
+            padding-top: 36px;
+            border-top: 1px solid var(--border)
+        }
+
+        .related-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--charcoal)
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 14px
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:720px) {
+            .product-layout {
+                grid-template-columns: 1fr;
+                gap: 28px
+            }
+
+            nav {
+                padding: 0 18px
+            }
+
+            .hero {
+                padding: 36px 18px
+            }
+
+            .shop-wrapper {
+                padding: 20px 14px
+            }
+
+            #product-page {
+                padding: 20px 14px 60px
+            }
+
+            .hero-stats {
+                gap: 20px
+            }
+
+            .product-visual {
+                position: static
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a class="nav-logo" onclick="showShop()">Ghazian<span>Curtain Hardware</span></a>
+        <span class="nav-count" id="nav-count">92 Products</span>
+    </nav>
+
+    <!-- SHOP PAGE -->
+    <div id="shop-page">
+        <div class="hero">
+            <p class="hero-eyebrow">Ghazian Home Solutions · Aligarh, India</p>
+            <h1>Curtain Knobs &<br>Rod Rail Brackets</h1>
+            <p>Premium metal curtain hardware in 20+ colour combinations. Available from Pack of 1 to 24.</p>
+            <div class="hero-stats">
+                <div class="hero-stat"><strong>92</strong><span>Listings</span></div>
+                <div class="hero-stat"><strong>70–79%</strong><span>Off MRP</span></div>
+                <div class="hero-stat"><strong>20+</strong><span>Colours</span></div>
+            </div>
+        </div>
+
+        <div class="shop-wrapper">
+            <div class="filters-bar">
+                <div class="filter-group" style="flex:2;min-width:200px">
+                    <label>Search</label>
+                    <input type="text" id="search-input" placeholder="Search by colour, pack size…"
+                        oninput="applyFilters()">
+                </div>
+                <div class="filter-group">
+                    <label>Pack Size</label>
+                    <select id="pack-filter" onchange="applyFilters()">
+                        <option value="">All Sizes</option>
+                        <option value="1">Pack of 1</option>
+                        <option value="2">Pack of 2</option>
+                        <option value="4">Pack of 4</option>
+                        <option value="6">Pack of 6</option>
+                        <option value="8">Pack of 8</option>
+                        <option value="12">Pack of 12</option>
+                        <option value="16">Pack of 16</option>
+                        <option value="20">Pack of 20</option>
+                        <option value="24">Pack of 24</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Sort By</label>
+                    <select id="sort-filter" onchange="applyFilters()">
+                        <option value="default">Default</option>
+                        <option value="price-asc">Price: Low → High</option>
+                        <option value="price-desc">Price: High → Low</option>
+                        <option value="discount">Biggest Discount</option>
+                        <option value="pack-asc">Pack: Small → Large</option>
+                        <option value="pack-desc">Pack: Large → Small</option>
+                    </select>
+                </div>
+                <button class="reset-btn" onclick="resetFilters()">Reset</button>
+            </div>
+
+            <div class="color-pills" id="color-pills"></div>
+
+            <div class="shop-header">
+                <div class="shop-title">All Products <em id="result-count"></em></div>
+            </div>
+
+            <div class="product-grid" id="product-grid"></div>
+            <div class="empty-state" id="empty-state" style="display:none">
+                <h3>No products found</h3>
+                <p>Try adjusting your filters or search term.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCT PAGE -->
+    <div id="product-page">
+        <button class="back-btn" onclick="showShop()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 5l-7 7 7 7" />
+            </svg>
+            Back to all products
+        </button>
+        <div class="product-layout">
+            <div class="product-visual">
+                <div class="main-image-box"><img id="pd-main-img" src="" alt="" onerror="this.style.display='none'">
+                </div>
+                <div class="thumbnails" id="pd-thumbs"></div>
+            </div>
+            <div class="product-info">
+                <p class="product-brand" id="pd-brand">Ghazian</p>
+                <h1 class="product-name" id="pd-name"></h1>
+                <div class="product-pricing-block">
+                    <span class="product-price" id="pd-price"></span>
+                    <span class="product-mrp" id="pd-mrp"></span>
+                    <span class="product-discount-pill" id="pd-discount"></span>
+                </div>
+                <p class="product-savings" id="pd-savings"></p>
+                <div class="stock-indicator" id="pd-stock">
+                    <div class="stock-dot"></div><span></span>
+                </div>
+                <div class="meta-grid">
+                    <div class="meta-item"><label>Colour</label>
+                        <value id="pd-color"></value>
+                    </div>
+                    <div class="meta-item"><label>Pack Size</label>
+                        <value id="pd-pack"></value>
+                    </div>
+                    <div class="meta-item"><label>SKU</label>
+                        <value id="pd-sku"></value>
+                    </div>
+                    <div class="meta-item"><label>Category</label>
+                        <value>Curtain Accessory</value>
+                    </div>
+                    <div class="meta-item"><label>Material</label>
+                        <value>Aluminium, Iron</value>
+                    </div>
+                    <div class="meta-item"><label>Warranty</label>
+                        <value>1 Year</value>
+                    </div>
+                </div>
+                <a class="btn-flipkart" id="pd-flipkart-btn" target="_blank" rel="noopener">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                    </svg>
+                    View on Flipkart
+                </a>
+                <p class="sku-note" id="pd-sku-note"></p>
+            </div>
+        </div>
+        <div class="related-section" id="related-section" style="display:none">
+            <h2>Same colour, different pack size</h2>
+            <div class="related-grid" id="related-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        const PRODUCTS = [{ "id": 1, "title": "Ghazian Maroon, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "12p12m", "fsn": "CAYGHZHPAFTFRZFF", "status": "ACTIVE", "mrp": 2599, "price": 705, "stock": 2976, "discount": 73, "pack": 12, "color_label": "Maroon, Gold", "color_hex": "#800000", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGHZHPAFTFRZFF", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/s/s/n/9-4-5-12p12m-ghazian-original-imahgnft5mgzshdv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/9/l/q/9-4-5-12p12m-ghazian-original-imahgnftkgr3fygh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/s/q/9-4-5-24-ghazian-original-imahgnyhvak8xjgq.jpeg?q=90"] }, { "id": 2, "title": "Ghazian Blue, Black Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "Blueblack12", "fsn": "CAYGYZXH9FHSNMYK", "status": "ACTIVE", "mrp": 2599, "price": 686, "stock": 2952, "discount": 74, "pack": 12, "color_label": "Blue, Black", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGYZXH9FHSNMYK", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/s/w/y/9-4-5-blueblack12-ghazian-original-imahhj2fhtkyqpsa.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/8/m/9-4-5-blueblack12-ghazian-original-imahhj2fthjkavwg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/x/h/q/9-4-5-blueblack12-ghazian-original-imahhj2fahnqbmzc.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/9/n/f/9-4-5-blueblack12-ghazian-original-imahhj2fwgambmax.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/r/x/6-3-5-blue-diamond-6-ghazian-original-imahg43zw4czzwhm.jpeg?q=90"] }, { "id": 3, "title": "Ghazian Green, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "Green4", "fsn": "CAYGYP2EGXGYHP3U", "status": "ACTIVE", "mrp": 999, "price": 280, "stock": 2716, "discount": 72, "pack": 4, "color_label": "Green, Gold", "color_hex": "#2d7a3a", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGYP2EGXGYHP3U", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/h/2/q/6-3-5-green4-ghazian-original-imagyp2ebdzksmhc.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/832/832/x/9-4-5-green12-ghazian-original-imagynx8fbd7mmfu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/x/b/y/9-4-5-sp-green12-ghazian-original-imahnjfparzgafny.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/p/m/4/9-4-5-sp-green12-ghazian-original-imahnjfpzmcvqajh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 4, "title": "Ghazian Silver Curtain Knobs, Rod Rail Bracket Metal (Pack of 24)", "sku": "M-SILVER GOLD 24", "fsn": "CAYH9PF3DTGYQAJN", "status": "ACTIVE", "mrp": 4599, "price": 1226, "stock": 2940, "discount": 73, "pack": 24, "color_label": "Silver", "color_hex": "#9E9E9E", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9PF3DTGYQAJN", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/t/z/4/9-4-5-24-ghazian-original-imahgnyhcj4hxzsz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/n/t/9-4-5-silvergold12-ghazian-original-imah2b4rzu42xyfm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/j/n/5/4-13-sp-6-ghazian-original-imahnh76yzznuwnz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/g/o/m/4-13-sp-6-ghazian-original-imahnh77xgyw5mne.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 5, "title": "Ghazian Red, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "M BRACKET-RED BLACK MARBLE 4", "fsn": "CAYHEAGFFD8ZHUNT", "status": "ACTIVE", "mrp": 999, "price": 286, "stock": 2982, "discount": 71, "pack": 4, "color_label": "Red, Black, Gold", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHEAGFFD8ZHUNT", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/i/x/w/6-3-5-m-bracket-red-black-marble-ghazian-original-imahfqbhbmffz4v3.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/p/w/a/6-3-5-m-bracket-red-black-marble-ghazian-original-imahfqbhmae7bppt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/a/l/9-4-5-24-ghazian-original-imahnjk75xrhgcc8.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/6/n/r/9-4-5-24-ghazian-original-imahnjkdyw4qkzhb.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/p/s/q/6-3-5-sdb8-ghazian-original-imahfhggz4zg4mfa.jpeg?q=90"] }, { "id": 6, "title": "Ghazian Black Curtain Knobs, Rod Rail Bracket Metal (Pack of 20)", "sku": "M-BRACKET BLACK 20", "fsn": "CAYHNDJZKZ2HECFG", "status": "ACTIVE", "mrp": 3999, "price": 1136, "stock": 2998, "discount": 72, "pack": 20, "color_label": "Black", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNDJZKZ2HECFG", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/f/c/a/10-4-5-m-bracket-black-20-ghazian-original-imahndjxd2hg8ezv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/h/a/10-4-5-m-bracket-black-4-ghazian-original-imahncmhsgz5ryyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/e/x/10-4-5-m-bracket-black-4-ghazian-original-imahncmhvqnfgcgq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/c/h/i/10-4-5-m-bracket-black-4-ghazian-original-imahncmg4mftthhr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 7, "title": "Ghazian Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 24)", "sku": "M-BRACKET BLACK GOLD MARBLE 24", "fsn": "CAYHN8GTGGK2KJDS", "status": "ACTIVE", "mrp": 4599, "price": 1284, "stock": 2999, "discount": 72, "pack": 24, "color_label": "Black, Gold", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHN8GTGGK2KJDS", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/o/g/k/10-4-5-m-bracket-black-gold-marble-24-ghazian-original-imahn8gtjjcw5eaa.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/o/u/z/6-3-5-m-bracket-black-gold-marble-12-ghazian-original-imahgvnhgyrzxkbm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/t/j/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvftvbgpgwf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/p/1/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvf2mg8hgtv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 8, "title": "Ghazian Red, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 6)", "sku": "M-BRACKET RED BLACK MARBLE 6", "fsn": "CAYHEK3GMUJDTHG2", "status": "ACTIVE", "mrp": 1399, "price": 433, "stock": 2995, "discount": 69, "pack": 6, "color_label": "Red, Black, Gold", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHEK3GMUJDTHG2", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/x/n/b/6-3-5-m-bracket-red-black-marble-6-ghazian-original-imahgupuqafxzv7r.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/6/q/6/6-3-5-m-bracket-red-black-marble-6-ghazian-original-imahgupukruzkzkq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/a/l/9-4-5-24-ghazian-original-imahnjk75xrhgcc8.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/6/n/r/9-4-5-24-ghazian-original-imahnjkdyw4qkzhb.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/n/s/z/6-3-5-m-bracket-blue-black-marble-6-ghazian-original-imahgckrchezczyu.jpeg?q=90"] }, { "id": 9, "title": "Ghazian Purple, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 20)", "sku": "M BRACKET-PURPLE GOLD 20", "fsn": "CAYHN72FZEKU2GXN", "status": "ACTIVE", "mrp": 3999, "price": 1109, "stock": 3000, "discount": 72, "pack": 20, "color_label": "Purple, Gold", "color_hex": "#7B1FA2", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHN72FZEKU2GXN", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/1/a/6/10-4-5-m-bracket-purple-gold-20-ghazian-original-imahn6wybgntnasf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/7/d/10-4-5-m-bracket-purple-gold-4-ghazian-original-imahmqtyttbnpjz5.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/m/v/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfrccgheemt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/j/b/b/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfr9fkvwugf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 10, "title": "Ghazian Pink, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "M BRACKET-PINK GOLD 12", "fsn": "CAYHMZ39JWKFGKSX", "status": "ACTIVE", "mrp": 2599, "price": 703, "stock": 2976, "discount": 73, "pack": 12, "color_label": "Pink, Gold", "color_hex": "#D81B60", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHMZ39JWKFGKSX", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/t/l/0/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahmz39supnpndq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/g/b/10-4-5-m-bracket-pink-gold-6-ghazian-original-imahmgfpcmsgzzhy.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/u/v/l/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduzaxzccg92.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/t/g/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduznzbhjtsu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/c/e/9/10-4-16-pcs-beige-crystal-knobs-ghazian-original-imahhhgjuvusudga.jpeg?q=90"] }, { "id": 11, "title": "Ghazian Red Curtain Knobs, Rod Rail Bracket Metal (Pack of 24)", "sku": "M-RED 24", "fsn": "CAYH9HQVWJV2PAWR", "status": "ACTIVE", "mrp": 4599, "price": 1226, "stock": 945, "discount": 73, "pack": 24, "color_label": "Red", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9HQVWJV2PAWR", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/y/7/g/9-4-5-24-ghazian-original-imahnjgzn3gtpy2g.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/u/u/p/9-4-5-24-ghazian-original-imahgcn84bsywz7w.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/b/y/v/10-4-5-sp-rmcb-ghazian-original-imahne62cq76ezyg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/y/b/u/10-4-5-sp-rmcb-ghazian-original-imahne62yzm9vnyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 12, "title": "Ghazian White, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "White4", "fsn": "CAYGYQ8FGVSFQEVX", "status": "ACTIVE", "mrp": 999, "price": 283, "stock": 2772, "discount": 72, "pack": 4, "color_label": "White, Gold", "color_hex": "#F5F5F5", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGYQ8FGVSFQEVX", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/g/z/m/6-3-5-white4-ghazian-original-imahc5kkf2sfmbsg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/y/i/6-4-5-white12-ghazian-original-imagyq7hak9h7b9u.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/i/4/y/6-4-5-white12-ghazian-original-imahnjh2yqna7fdz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/x/v/y/6-4-5-white12-ghazian-original-imahnjh27wfsnyxv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 13, "title": "Ghazian Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "M-BRACKET BLACK GOLD MARBLE 4", "fsn": "CAYHGVWXXXYV8QN4", "status": "ACTIVE", "mrp": 999, "price": 286, "stock": 2991, "discount": 71, "pack": 4, "color_label": "Black, Gold", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHGVWXXXYV8QN4", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/s/d/z/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahgvwxrfrfuumu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/o/u/z/6-3-5-m-bracket-black-gold-marble-12-ghazian-original-imahgvnhgyrzxkbm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/t/j/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvftvbgpgwf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/p/1/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvf2mg8hgtv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 14, "title": "Ghazian Light Blue Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "M-BRACKET LIGHT BLUE 4", "fsn": "CAYHNMQYENJHY72X", "status": "ACTIVE", "mrp": 999, "price": 226, "stock": 2999, "discount": 77, "pack": 4, "color_label": "Light Blue", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNMQYENJHY72X", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/9/d/r/10-4-5-m-bracket-light-blue-4-ghazian-original-imahnmqyh7umxddj.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/x/t/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfe2ryxkbv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/k/r/9/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhffegbnfb4.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/j/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfyjhazrba.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 15, "title": "Ghazian Maroon Curtain Knobs, Rod Rail Bracket Metal (Pack of 16)", "sku": "M-MAROON GOLD 16", "fsn": "CAYH9PYHHKBRSY2D", "status": "ACTIVE", "mrp": 3299, "price": 853, "stock": 2760, "discount": 74, "pack": 16, "color_label": "Maroon", "color_hex": "#800000", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9PYHHKBRSY2D", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/o/n/q/9-4-5-16-ghazian-original-imahgnfcurxbp5je.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/s/q/9-4-5-24-ghazian-original-imahgnyhvak8xjgq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/v/s/g/9-4-5-24-ghazian-original-imahg99qu5eghvxz.jpeg?q=90"] }, { "id": 16, "title": "Ghazian Blue, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "M BRACKET-BLUE BLACK MARBLE", "fsn": "CAYHCNZA6RAFUKRW", "status": "ACTIVE", "mrp": 999, "price": 283, "stock": 2917, "discount": 72, "pack": 4, "color_label": "Blue, Black, Gold", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHCNZA6RAFUKRW", "images": ["https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/x/u/r/3-5-4-5-sp-blue-black-marble-ghazian-original-imahddfse2rgegyr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/s/a/9-4-5-12-ghazian-original-imahfqbpgsqc9gkg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/n/b/h/3-5-4-5-blue-black-marble-ghazian-original-imahcnzanezfckk9.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/n/g/m/6-3-5-m-bracket-blue-black-marble-6-ghazian-original-imahefnmcqqrsphv.jpeg?q=90"] }, { "id": 17, "title": "Ghazian Multicolor Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "M-WHITE GOLD MARBLE 12", "fsn": "CAYH9GY2VGZCFHZN", "status": "ACTIVE", "mrp": 2599, "price": 703, "stock": 2487, "discount": 73, "pack": 12, "color_label": "Multicolor", "color_hex": "#9C27B0", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9GY2VGZCFHZN", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/n/3/b/9-4-5-white-gold-marble-12-ghazian-original-imahgcnw58uh3jtm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/l/3/9-4-5-24-ghazian-original-imahg99fggfyheyw.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/832/832/9-4-5-24-ghazian-original-imahnjfguj2fzu6g.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/7/x/9-4-5-24-ghazian-original-imahnjfg4u6qwztz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 18, "title": "Ghazian Black Curtain Knobs, Rod Rail Bracket Metal (Pack of 24)", "sku": "M-BRACKET BLACK 24", "fsn": "CAYHNDQAXT2DGVSJ", "status": "ACTIVE", "mrp": 4599, "price": 1300, "stock": 2998, "discount": 72, "pack": 24, "color_label": "Black", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNDQAXT2DGVSJ", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/e/q/j/10-4-5-m-bracket-black-24-ghazian-original-imahndkh2he3zfcg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/h/a/10-4-5-m-bracket-black-4-ghazian-original-imahncmhsgz5ryyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/e/x/10-4-5-m-bracket-black-4-ghazian-original-imahncmhvqnfgcgq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/c/h/i/10-4-5-m-bracket-black-4-ghazian-original-imahncmg4mftthhr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 19, "title": "Ghazian Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 20)", "sku": "M-BRACKET BLACK GOLD MARBLE 20", "fsn": "CAYHN8ETH6VECHNU", "status": "ACTIVE", "mrp": 3999, "price": 1109, "stock": 2994, "discount": 72, "pack": 20, "color_label": "Black, Gold", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHN8ETH6VECHNU", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/r/5/w/10-4-5-m-bracket-black-gold-marble-20-ghazian-original-imahn8epmt27hyng.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/o/u/z/6-3-5-m-bracket-black-gold-marble-12-ghazian-original-imahgvnhgyrzxkbm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/t/j/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvftvbgpgwf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/p/1/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvf2mg8hgtv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 20, "title": "Ghazian Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 2)", "sku": "M-BRACKET BLACK GOLD MARBLE 2", "fsn": "CAYHN82EFNJHYNGY", "status": "ACTIVE", "mrp": 599, "price": 170, "stock": 2999, "discount": 72, "pack": 2, "color_label": "Black, Gold", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHN82EFNJHYNGY", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/i/d/5/6-3-5-m-bracket-black-gold-marble-12-ghazian-original-imahgvnh64qyjbta.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/o/u/z/6-3-5-m-bracket-black-gold-marble-12-ghazian-original-imahgvnhgyrzxkbm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/t/j/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvftvbgpgwf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/p/1/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvf2mg8hgtv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 21, "title": "Ghazian Silver Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "2 SUPP 2 SILVER DIAMOND KNOBS", "fsn": "CAYHAF9GFQSNPUPS", "status": "ACTIVE", "mrp": 699, "price": 192, "stock": 968, "discount": 73, "pack": 4, "color_label": "Silver", "color_hex": "#9E9E9E", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHAF9GFQSNPUPS", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/v/r/m/6-3-5-2-support-2-curtain-knobs-ghazian-original-imahh5zcu6h4rmsw.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/z/o/f/10-4-gcb20-ghazian-original-imahh4hsfkeaehzf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/g/x/e/6-3-5-2-support-2-curtain-knobs-ghazian-original-imahh5zcqwvzyrj7.jpeg?q=90"] }, { "id": 22, "title": "Ghazian Silver Curtain Knobs, Rod Rail Bracket Metal (Pack of 6)", "sku": "Silver gold6", "fsn": "CAYH9AKNYFHDJMHR", "status": "ACTIVE", "mrp": 1399, "price": 403, "stock": 2753, "discount": 71, "pack": 6, "color_label": "Silver", "color_hex": "#9E9E9E", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9AKNYFHDJMHR", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/m/a/h/4-13-6-ghazian-original-imahgupvnqngazuv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/s/4/4-13-6-ghazian-original-imahgupvxqfczhqa.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/j/n/5/4-13-sp-6-ghazian-original-imahnh76yzznuwnz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/g/o/m/4-13-sp-6-ghazian-original-imahnh77xgyw5mne.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 23, "title": "Ghazian Blue, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "M BRACKET-BLUE BLACK MARBLE 12", "fsn": "CAYHD2FY68YZVAAN", "status": "ACTIVE", "mrp": 2599, "price": 695, "stock": 2777, "discount": 73, "pack": 12, "color_label": "Blue, Black, Gold", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHD2FY68YZVAAN", "images": ["https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/i/k/h/9-0-4-5-sp-12-ghazian-original-imahddfsjzgqbfdd.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/s/a/9-4-5-12-ghazian-original-imahfqbpgsqc9gkg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/v/a/y/9-4-5-sp-24-ghazian-original-imahnjkvgpkqmv2t.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/m/y/z/9-4-5-sp-24-ghazian-original-imahnjkvyyeqsx5q.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/n/g/m/6-3-5-m-bracket-blue-black-marble-6-ghazian-original-imahefnmcqqrsphv.jpeg?q=90"] }, { "id": 24, "title": "Ghazian Black Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "M-BRACKET BLACK 12", "fsn": "CAYHNDJXXCEV7VTZ", "status": "ACTIVE", "mrp": 2599, "price": 705, "stock": 2984, "discount": 73, "pack": 12, "color_label": "Black", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNDJXXCEV7VTZ", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/q/y/e/10-4-5-m-bracket-black-12-ghazian-original-imahndjx99zkqdnu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/h/a/10-4-5-m-bracket-black-4-ghazian-original-imahncmhsgz5ryyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/e/x/10-4-5-m-bracket-black-4-ghazian-original-imahncmhvqnfgcgq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/c/h/i/10-4-5-m-bracket-black-4-ghazian-original-imahncmg4mftthhr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 25, "title": "Ghazian Purple, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 6)", "sku": "M BRACKET-PURPLE GOLD 6", "fsn": "CAYHN2FZZGD5QHTZ", "status": "ACTIVE", "mrp": 1399, "price": 403, "stock": 2999, "discount": 71, "pack": 6, "color_label": "Purple, Gold", "color_hex": "#7B1FA2", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHN2FZZGD5QHTZ", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/t/u/4/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnygyqz8yr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/7/d/10-4-5-m-bracket-purple-gold-4-ghazian-original-imahmqtyttbnpjz5.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/m/v/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfrccgheemt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/j/b/b/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfr9fkvwugf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 26, "title": "Ghazian Maroon, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 8)", "sku": "12p8m", "fsn": "CAYGHA3FBDHDMGGE", "status": "ACTIVE", "mrp": 1799, "price": 489, "stock": 2963, "discount": 73, "pack": 8, "color_label": "Maroon, Gold", "color_hex": "#800000", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGHA3FBDHDMGGE", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/c/g/b/9-4-5-m8-ghazian-original-imagha3f2tgrfamk.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/u/c/9-4-5-m8-ghazian-original-imagkyjvy4fcna6g.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 27, "title": "Ghazian Silver, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 20)", "sku": "Silver20", "fsn": "CAYGZ8T6Z5Z5XYY3", "status": "ACTIVE", "mrp": 3999, "price": 1089, "stock": 1893, "discount": 73, "pack": 20, "color_label": "Silver, Gold", "color_hex": "#9E9E9E", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGZ8T6Z5Z5XYY3", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/x/m/5/9-4-5-silver20-ghazian-original-imahgnf3fdzpntgr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/a/w/9-4-5-silver20-ghazian-original-imahgnf3fzzemy9e.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/j/n/5/4-13-sp-6-ghazian-original-imahnh76yzznuwnz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/g/o/m/4-13-sp-6-ghazian-original-imahnh77xgyw5mne.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 28, "title": "Ghazian Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "M-BRACKET BLACK GOLD MARBLE 12", "fsn": "CAYHGVNHTXCQKARR", "status": "ACTIVE", "mrp": 2599, "price": 703, "stock": 2855, "discount": 73, "pack": 12, "color_label": "Black, Gold", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHGVNHTXCQKARR", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/n/i/h/6-3-5-m-bracket-black-gold-marble-12-ghazian-original-imahgvnheynvqjsg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/o/u/z/6-3-5-m-bracket-black-gold-marble-12-ghazian-original-imahgvnhgyrzxkbm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/t/j/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvftvbgpgwf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/p/1/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvf2mg8hgtv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 29, "title": "Ghazian Red, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 20)", "sku": "Curtain bracket20", "fsn": "CAYGHB5ZWHETX49K", "status": "ACTIVE", "mrp": 3999, "price": 1089, "stock": 1580, "discount": 73, "pack": 20, "color_label": "Red, Gold", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGHB5ZWHETX49K", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/q/u/j/9-4-5-cb20-ghazian-original-imahgnfzjznpy5vv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/y/j/9-4-5-cb20-ghazian-original-imahgnfzzs7n3jej.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/b/y/v/10-4-5-sp-rmcb-ghazian-original-imahne62cq76ezyg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/y/b/u/10-4-5-sp-rmcb-ghazian-original-imahne62yzm9vnyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 30, "title": "Ghazian Purple, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 16)", "sku": "M BRACKET-PURPLE GOLD 16", "fsn": "CAYHN6WZEPGVUGDW", "status": "ACTIVE", "mrp": 3299, "price": 849, "stock": 2998, "discount": 74, "pack": 16, "color_label": "Purple, Gold", "color_hex": "#7B1FA2", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHN6WZEPGVUGDW", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/t/d/a/10-4-5-m-bracket-purple-gold-16-ghazian-original-imahn6wvzcqv5svs.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/7/d/10-4-5-m-bracket-purple-gold-4-ghazian-original-imahmqtyttbnpjz5.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/m/v/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfrccgheemt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/j/b/b/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfr9fkvwugf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 31, "title": "Ghazian Red, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 16)", "sku": "M-BRACKET RED BLACK MARBLE 16", "fsn": "CAYHEHQUN9FZPH57", "status": "ACTIVE", "mrp": 3299, "price": 902, "stock": 2976, "discount": 73, "pack": 16, "color_label": "Red, Black, Gold", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHEHQUN9FZPH57", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/q/o/t/6-3-5-m-bracket-red-black-marble-16-ghazian-original-imahg8fjrbhfhkcp.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/m/4/o/6-3-5-m-bracket-red-black-marble-6-ghazian-original-imahfqbbrztfhbmg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/a/l/9-4-5-24-ghazian-original-imahnjk75xrhgcc8.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/6/n/r/9-4-5-24-ghazian-original-imahnjkdyw4qkzhb.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/p/s/q/6-3-5-sdb8-ghazian-original-imahfhggz4zg4mfa.jpeg?q=90"] }, { "id": 32, "title": "Ghazian Blue, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 24)", "sku": "M BRACKET-BLUE BLACK MARBLE 24", "fsn": "CAYHCQZZKMFPKDQ9", "status": "ACTIVE", "mrp": 4599, "price": 1276, "stock": 2971, "discount": 72, "pack": 24, "color_label": "Blue, Black, Gold", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHCQZZKMFPKDQ9", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/y/1/j/9-4-5-24-ghazian-original-imahgck2bfuqwtct.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/u/g/i/9-4-5-24-ghazian-original-imahgck2eprpa77k.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/7/e/w/9-4-5-24-ghazian-original-imahgck2rxuqyxg9.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/w/f/5/9-4-5-24-ghazian-original-imahgck2vs44k57a.jpeg?q=90"] }, { "id": 33, "title": "Ghazian Purple, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 8)", "sku": "M BRACKET-PURPLE GOLD 8", "fsn": "CAYHN3JQF5GZAHWH", "status": "ACTIVE", "mrp": 1799, "price": 495, "stock": 2994, "discount": 72, "pack": 8, "color_label": "Purple, Gold", "color_hex": "#7B1FA2", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHN3JQF5GZAHWH", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/d/832/832/10-4-5-m-bracket-purple-gold-8-ghazian-original-imahn3jprfvxbhxr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/7/d/10-4-5-m-bracket-purple-gold-4-ghazian-original-imahmqtyttbnpjz5.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/m/v/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfrccgheemt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/j/b/b/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfr9fkvwugf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 34, "title": "Ghazian Silver Curtain Knobs, Rod Rail Bracket Metal (Pack of 16)", "sku": "M-SILVER GOLD 16", "fsn": "CAYH9PYVP8MXFAYY", "status": "ACTIVE", "mrp": 3299, "price": 863, "stock": 2913, "discount": 74, "pack": 16, "color_label": "Silver", "color_hex": "#9E9E9E", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9PYVP8MXFAYY", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/9/z/u/10-4-5-16-ghazian-original-imahmz3vjhgctfuf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/n/t/9-4-5-silvergold12-ghazian-original-imah2b4rzu42xyfm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/j/n/5/4-13-sp-6-ghazian-original-imahnh76yzznuwnz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/g/o/m/4-13-sp-6-ghazian-original-imahnh77xgyw5mne.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 35, "title": "Ghazian White, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 16)", "sku": "M-WHITE GOLD MARBLE 16", "fsn": "CAYH9K5AZGBA6XDJ", "status": "ACTIVE", "mrp": 3299, "price": 902, "stock": 2913, "discount": 73, "pack": 16, "color_label": "White, Gold", "color_hex": "#F5F5F5", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9K5AZGBA6XDJ", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/c/f/8/9-4-5-16-ghazian-original-imah9k5azbfqgzdg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/r/i/4-3-white-gold-marble-ghazian-original-imah9jfbjmeyugf4.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/832/832/9-4-5-24-ghazian-original-imahnjfguj2fzu6g.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/7/x/9-4-5-24-ghazian-original-imahnjfg4u6qwztz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 36, "title": "Ghazian Beige Curtain Knobs, Rod Rail Bracket Metal (Pack of 8)", "sku": "8 pcs Beige Crystal Curtain knobs", "fsn": "CAYHHJAXEH82QW3S", "status": "ACTIVE", "mrp": 999, "price": 351, "stock": 17, "discount": 65, "pack": 8, "color_label": "Beige", "color_hex": "#C9A96E", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHHJAXEH82QW3S", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/d/d/3/10-4-8-pcs-beige-crystal-knobs-ghazian-original-imahhbk94yggdung.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/g/1/10-4-8-pcs-beige-crystal-curtain-knobs-ghazian-original-imahhpmm9aaymhvt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/7/d/5/10-4-8-pcs-beige-crystal-curtain-knobs-ghazian-original-imahhpmm5puswuhz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 37, "title": "Ghazian Purple, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "M BRACKET-PURPLE GOLD 4", "fsn": "CAYHMQTYZCTUM8TW", "status": "ACTIVE", "mrp": 999, "price": 283, "stock": 2993, "discount": 72, "pack": 4, "color_label": "Purple, Gold", "color_hex": "#7B1FA2", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHMQTYZCTUM8TW", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/4/w/v/10-4-5-m-bracket-purple-gold-4-ghazian-original-imahmqtyjgbhgzmn.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/7/d/10-4-5-m-bracket-purple-gold-4-ghazian-original-imahmqtyttbnpjz5.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/m/v/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfrccgheemt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/j/b/b/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfr9fkvwugf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/u/p/l/10-4-5-m-bracket-purple-gold-4-ghazian-original-imahmqtyvgz7rtbv.jpeg?q=90"] }, { "id": 38, "title": "Ghazian Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 6)", "sku": "M-BRACKET BLACK GOLD MARBLE 6", "fsn": "CAYHN8YG2ZH6SHGX", "status": "ACTIVE", "mrp": 1399, "price": 433, "stock": 2995, "discount": 69, "pack": 6, "color_label": "Black, Gold", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHN8YG2ZH6SHGX", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/s/w/x/10-4-5-m-bracket-black-gold-marble-6-ghazian-original-imahn7zveuyetn9n.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/o/u/z/6-3-5-m-bracket-black-gold-marble-12-ghazian-original-imahgvnhgyrzxkbm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/t/j/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvftvbgpgwf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/p/1/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvf2mg8hgtv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 39, "title": "Ghazian Orange, Black Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "ORANGE BLACK FIT 12", "fsn": "CAYHHJ53GRVX7XDF", "status": "ACTIVE", "mrp": 2599, "price": 686, "stock": 2850, "discount": 74, "pack": 12, "color_label": "Orange, Black", "color_hex": "#E65100", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHHJ53GRVX7XDF", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/r/z/l/9-4-5-orange-black-fit-12-ghazian-original-imahhj53ejgj8bzz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/l/6/9-4-5-orange-black-fit-12-ghazian-original-imahhj53tnebdzyf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/u/f/9-4-5-orange-black-fit-12-ghazian-original-imahhj53jwggqked.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 40, "title": "Ghazian Pink, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 16)", "sku": "M BRACKET-PINK GOLD 16", "fsn": "CAYHMZ3SUTQENMSQ", "status": "ACTIVE", "mrp": 3299, "price": 894, "stock": 2998, "discount": 73, "pack": 16, "color_label": "Pink, Gold", "color_hex": "#D81B60", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHMZ3SUTQENMSQ", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/i/p/8/10-4-5-m-bracket-pink-gold-16-ghazian-original-imahmz3sp5bbzhcz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/g/b/10-4-5-m-bracket-pink-gold-6-ghazian-original-imahmgfpcmsgzzhy.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/u/v/l/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduzaxzccg92.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/t/g/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduznzbhjtsu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 41, "title": "Ghazian Maroon, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 20)", "sku": "maroon20m", "fsn": "CAYGREMFHYDAVKYQ", "status": "ACTIVE", "mrp": 3999, "price": 1089, "stock": 1537, "discount": 73, "pack": 20, "color_label": "Maroon, Gold", "color_hex": "#800000", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGREMFHYDAVKYQ", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/y/3/q/9-4-5-m20-ghazian-original-imahh64ry2dgtkpf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/p/x/x/9-4-5-rdm12-ghazian-original-imahh5jmr78e6s3q.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/u/y/9-4-5-m20-ghazian-original-imahh64rdjhxhd4q.jpeg?q=90"] }, { "id": 42, "title": "Ghazian Red, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 24)", "sku": "BRACKET-RED BLACK MARBLE 24", "fsn": "CAYHFY2YHGZMZHTE", "status": "ACTIVE", "mrp": 4599, "price": 1291, "stock": 2998, "discount": 72, "pack": 24, "color_label": "Red, Black, Gold", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHFY2YHGZMZHTE", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/b/f/j/9-4-5-24-ghazian-original-imahgnfqars6rtka.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/p/9/f/6-3-5-m-bracket-red-black-marble-ghazian-original-imaheagewp62rwnt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/a/l/9-4-5-24-ghazian-original-imahnjk75xrhgcc8.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/6/n/r/9-4-5-24-ghazian-original-imahnjkdyw4qkzhb.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 43, "title": "Ghazian Red, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 20)", "sku": "M-BRACKET RED BLACK MARBLE 20", "fsn": "CAYHEHPZH5ZF4Y6T", "status": "ACTIVE", "mrp": 3999, "price": 1109, "stock": 2888, "discount": 72, "pack": 20, "color_label": "Red, Black, Gold", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHEHPZH5ZF4Y6T", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/n/p/q/6-3-5-m-bracket-red-black-marble-20-ghazian-original-imahgzptn7fukg26.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/p/9/f/6-3-5-m-bracket-red-black-marble-ghazian-original-imaheagewp62rwnt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/a/l/9-4-5-24-ghazian-original-imahnjk75xrhgcc8.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/6/n/r/9-4-5-24-ghazian-original-imahnjkdyw4qkzhb.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 44, "title": "Ghazian White, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 24)", "sku": "M-WHITE GOLD MARBLE 24", "fsn": "CAYH9KJCVXGCHEZU", "status": "ACTIVE", "mrp": 4599, "price": 1276, "stock": 2932, "discount": 72, "pack": 24, "color_label": "White, Gold", "color_hex": "#F5F5F5", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9KJCVXGCHEZU", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/j/b/i/9-4-5-24-ghazian-original-imahgevexjpa5hdm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/z/s/e/9-4-5-24-ghazian-original-imahgevextprkbfp.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/832/832/9-4-5-24-ghazian-original-imahnjfguj2fzu6g.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/7/x/9-4-5-24-ghazian-original-imahnjfg4u6qwztz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 45, "title": "Ghazian Blue, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 16)", "sku": "M BRACKET-BLUE BLACK MARBLE 16", "fsn": "CAYHCS3ZKSHCH3YE", "status": "ACTIVE", "mrp": 3299, "price": 902, "stock": 2938, "discount": 73, "pack": 16, "color_label": "Blue, Black, Gold", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHCS3ZKSHCH3YE", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/p/z/g/10-4-5-16-ghazian-original-imahgzpvabyppwwh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/s/q/9-4-5-24-ghazian-original-imahgnyhvak8xjgq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/5/x/j/9-4-5-12-ghazian-original-imahfqbpqeraprkv.jpeg?q=90"] }, { "id": 46, "title": "Ghazian White, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 8)", "sku": "M-WHITE GOLD MARBLE 8", "fsn": "CAYH9KAKMGW5FRFR", "status": "ACTIVE", "mrp": 1799, "price": 560, "stock": 2952, "discount": 69, "pack": 8, "color_label": "White, Gold", "color_hex": "#F5F5F5", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9KAKMGW5FRFR", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/f/e/t/9-4-5-8-ghazian-original-imah9kakszgw6hr9.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/r/i/4-3-white-gold-marble-ghazian-original-imah9jfbjmeyugf4.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/832/832/9-4-5-24-ghazian-original-imahnjfguj2fzu6g.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/7/x/9-4-5-24-ghazian-original-imahnjfg4u6qwztz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 47, "title": "Ghazian Silver, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "SilverGold4", "fsn": "CAYGZGUC6KKWH8DP", "status": "ACTIVE", "mrp": 999, "price": 280, "stock": 1883, "discount": 72, "pack": 4, "color_label": "Silver, Gold", "color_hex": "#9E9E9E", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGZGUC6KKWH8DP", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/g/g/n/9-4-5-silvergold12-ghazian-original-imahmnz6ammtjqep.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/s/4/4-13-6-ghazian-original-imahgupvxqfczhqa.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/j/n/5/4-13-sp-6-ghazian-original-imahnh76yzznuwnz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/g/o/m/4-13-sp-6-ghazian-original-imahnh77xgyw5mne.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/g/n/9-4-5-silvergold12-ghazian-original-imahmnz6p9uz3jzd.jpeg?q=90"] }, { "id": 48, "title": "Ghazian Silver, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "Silver12", "fsn": "CAYGY7HHYGBK73RG", "status": "ACTIVE", "mrp": 2599, "price": 689, "stock": 1260, "discount": 73, "pack": 12, "color_label": "Silver, Gold", "color_hex": "#9E9E9E", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGY7HHYGBK73RG", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/l/y/h/9-4-5-silver12-ghazian-original-imahh7ncar5hpwnb.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/n/t/9-4-5-silvergold12-ghazian-original-imah2b4rzu42xyfm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/j/n/5/4-13-sp-6-ghazian-original-imahnh76yzznuwnz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/g/o/m/4-13-sp-6-ghazian-original-imahnh77xgyw5mne.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 49, "title": "Ghazian White, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 2)", "sku": "M-WHITE GOLD MARBLE 2", "fsn": "CAYH9GYCZDAVA6V3", "status": "ACTIVE", "mrp": 599, "price": 172, "stock": 2978, "discount": 71, "pack": 2, "color_label": "White, Gold", "color_hex": "#F5F5F5", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9GYCZDAVA6V3", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/m/j/7/4-3-white-gold-marble-ghazian-original-imah9gxzf94hpshe.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/t/e/4-3-white-gold-marble-ghazian-original-imah9gxzdrrkzm3c.jpeg?q=90"] }, { "id": 50, "title": "Ghazian Silver Curtain Knobs, Rod Rail Bracket Metal (Pack of 16)", "sku": "SILVER DIAMOND 16", "fsn": "CAYH9MU8RUK653AW", "status": "ACTIVE", "mrp": 1799, "price": 634, "stock": 2835, "discount": 65, "pack": 16, "color_label": "Silver", "color_hex": "#9E9E9E", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9MU8RUK653AW", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/a/b/a/6-3-5-16-ghazian-original-imahhfh26d9zfv5e.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/o/9/i/6-3-5-w12-ghazian-original-imahhbwzuy7zyg4y.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/g/d/e/10-4-sbs8-ghazian-original-imahhfhyhzvqmrhm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/j/s/6-3-5-sdb8-ghazian-original-imah83vphcyffyzq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 51, "title": "Ghazian White, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 20)", "sku": "M-WHITE GOLD MARBLE 20", "fsn": "CAYH9KJ7KUREUSZC", "status": "ACTIVE", "mrp": 3999, "price": 1109, "stock": 2391, "discount": 72, "pack": 20, "color_label": "White, Gold", "color_hex": "#F5F5F5", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9KJ7KUREUSZC", "images": ["https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/l/t/e/9-0-4-5-sp-20-ghazian-original-imahddfqgg9wpk5x.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/l/3/9-4-5-24-ghazian-original-imahg99fggfyheyw.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/832/832/9-4-5-24-ghazian-original-imahnjfguj2fzu6g.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/7/x/9-4-5-24-ghazian-original-imahnjfg4u6qwztz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 52, "title": "Ghazian Blue Curtain Knobs, Rod Rail Bracket Metal (Pack of 24)", "sku": "M-BLUE GOLD 24", "fsn": "CAYH9PFQA2M3HNAH", "status": "ACTIVE", "mrp": 4599, "price": 1226, "stock": 2995, "discount": 73, "pack": 24, "color_label": "Blue", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9PFQA2M3HNAH", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/p/e/o/9-4-5-24-ghazian-original-imahg99neh5hh2cb.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/v/9/d/9-4-5-24-ghazian-original-imahg99nqyymw2as.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/o/l/d/9-4-5-sp-bm16-ghazian-original-imahndx67gfd6vap.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/m/2/f/9-4-5-sp-bm16-ghazian-original-imahndx6wksufdzu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/r/x/6-3-5-blue-diamond-6-ghazian-original-imahg43zw4czzwhm.jpeg?q=90"] }, { "id": 53, "title": "Ghazian Red, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 1)", "sku": "CURTAIN BRACKET 1", "fsn": "CAYGWSFEGJYJYVGH", "status": "ACTIVE", "mrp": 499, "price": 118, "stock": 2855, "discount": 76, "pack": 1, "color_label": "Red, Gold", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGWSFEGJYJYVGH", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/g/i/l/4-3-red-bracket-ghazian-original-imahf42xfbghxzsv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/f/q/4-3-red-bracket-ghazian-original-imahf42xzqqpxfsn.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/b/y/v/10-4-5-sp-rmcb-ghazian-original-imahne62cq76ezyg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/y/b/u/10-4-5-sp-rmcb-ghazian-original-imahne62yzm9vnyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/n/g/m/6-3-5-m-bracket-blue-black-marble-6-ghazian-original-imahefnmcqqrsphv.jpeg?q=90"] }, { "id": 54, "title": "Ghazian Multicolor Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "M BRACKET-WHITE GOLD MARBLE", "fsn": "CAYHBNMTPJGUN8DY", "status": "ACTIVE", "mrp": 999, "price": 283, "stock": 2833, "discount": 72, "pack": 4, "color_label": "Multicolor", "color_hex": "#9C27B0", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHBNMTPJGUN8DY", "images": ["https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/1/v/h/3-5-4-5-sp-white-gold-marble-ghazian-original-imahddfssgjnztyg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/r/i/4-3-white-gold-marble-ghazian-original-imah9jfbjmeyugf4.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/832/832/9-4-5-24-ghazian-original-imahnjfguj2fzu6g.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/7/x/9-4-5-24-ghazian-original-imahnjfg4u6qwztz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 55, "title": "Ghazian Black Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "M-BRACKET BLACK  4", "fsn": "CAYHNCMK6BA6GFPC", "status": "ACTIVE", "mrp": 999, "price": 326, "stock": 2998, "discount": 67, "pack": 4, "color_label": "Black", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNCMK6BA6GFPC", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/l/0/h/10-4-5-m-bracket-black-4-ghazian-original-imahncmhzhynynm2.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/h/a/10-4-5-m-bracket-black-4-ghazian-original-imahncmhsgz5ryyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/e/x/10-4-5-m-bracket-black-4-ghazian-original-imahncmhvqnfgcgq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/c/h/i/10-4-5-m-bracket-black-4-ghazian-original-imahncmg4mftthhr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 56, "title": "Ghazian Blue, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 20)", "sku": "M BRACKET-BLUE BLACK MARBLE 20", "fsn": "CAYHCTAAHGKF39CZ", "status": "ACTIVE", "mrp": 3999, "price": 1089, "stock": 2809, "discount": 73, "pack": 20, "color_label": "Blue, Black, Gold", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHCTAAHGKF39CZ", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/x/n/b/9-4-5-20-ghazian-original-imahgzp6hgzche7u.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/s/q/9-4-5-24-ghazian-original-imahgnyhvak8xjgq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/5/x/j/9-4-5-12-ghazian-original-imahfqbpqeraprkv.jpeg?q=90"] }, { "id": 57, "title": "Ghazian Red, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "M BRACKET-RED BLACK MARBLE 12", "fsn": "CAYHEK3HPGPHSA2P", "status": "ACTIVE", "mrp": 2599, "price": 703, "stock": 2701, "discount": 73, "pack": 12, "color_label": "Red, Black, Gold", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHEK3HPGPHSA2P", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/u/b/q/6-3-5-m-bracket-red-black-marble-12-ghazian-original-imahhjkggdhpemtf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/p/9/f/6-3-5-m-bracket-red-black-marble-ghazian-original-imaheagewp62rwnt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/a/l/9-4-5-24-ghazian-original-imahnjk75xrhgcc8.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/6/n/r/9-4-5-24-ghazian-original-imahnjkdyw4qkzhb.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 58, "title": "Ghazian Pink, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 20)", "sku": "M BRACKET-PINK GOLD 20", "fsn": "CAYHMZ43379YCADH", "status": "ACTIVE", "mrp": 3999, "price": 1109, "stock": 2991, "discount": 72, "pack": 20, "color_label": "Pink, Gold", "color_hex": "#D81B60", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHMZ43379YCADH", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/x/k/0/10-4-5-m-bracket-pink-gold-20-ghazian-original-imahmz42w6a9zmpw.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/g/b/10-4-5-m-bracket-pink-gold-6-ghazian-original-imahmgfpcmsgzzhy.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/u/v/l/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduzaxzccg92.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/t/g/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduznzbhjtsu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 59, "title": "Ghazian White, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "White12", "fsn": "CAYGYQ7HNHVHFAXC", "status": "ACTIVE", "mrp": 2599, "price": 686, "stock": 2592, "discount": 74, "pack": 12, "color_label": "White, Gold", "color_hex": "#F5F5F5", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGYQ7HNHVHFAXC", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/i/m/x/6-4-5-white12-ghazian-original-imahhjkgwykdptn6.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/y/i/6-4-5-white12-ghazian-original-imagyq7hak9h7b9u.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/i/4/y/6-4-5-white12-ghazian-original-imahnjh2yqna7fdz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/x/v/y/6-4-5-white12-ghazian-original-imahnjh27wfsnyxv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 60, "title": "Ghazian Pink, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "M BRACKET-PINK GOLD 4", "fsn": "CAYHMGFSCRYN7VFF", "status": "ACTIVE", "mrp": 999, "price": 286, "stock": 2977, "discount": 71, "pack": 4, "color_label": "Pink, Gold", "color_hex": "#D81B60", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHMGFSCRYN7VFF", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/e/f/c/10-4-5-m-bracket-pink-gold-4-ghazian-original-imahmqu2thadumch.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/t/9/10-4-5-m-bracket-pink-gold-4-ghazian-original-imahmqu2n5pktyvj.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/u/v/l/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduzaxzccg92.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/t/g/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduznzbhjtsu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/7/a/9-4-5-24-ghazian-original-imahgcknyhydq4vt.jpeg?q=90"] }, { "id": 61, "title": "Ghazian Red, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 16)", "sku": "Curtain bracket 16", "fsn": "CAYGHCABHY87SSPU", "status": "ACTIVE", "mrp": 3299, "price": 844, "stock": 2456, "discount": 74, "pack": 16, "color_label": "Red, Gold", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGHCABHY87SSPU", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/m/c/o/9-4-5-cb16-ghazian-original-imahgzpmk2r7bzku.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/o/v/o/9-4-5-cb16-ghazian-original-imahgzpmtdaamygk.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/b/y/v/10-4-5-sp-rmcb-ghazian-original-imahne62cq76ezyg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/y/b/u/10-4-5-sp-rmcb-ghazian-original-imahne62yzm9vnyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 62, "title": "Ghazian Light Blue Curtain Knobs, Rod Rail Bracket Metal (Pack of 24)", "sku": "M-BRACKET LIGHT BLUE 24", "fsn": "CAYHNMQFHCNQTYWV", "status": "ACTIVE", "mrp": 4599, "price": 1449, "stock": 3000, "discount": 68, "pack": 24, "color_label": "Light Blue", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNMQFHCNQTYWV", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/r/u/q/10-4-5-m-bracket-light-blue-24-ghazian-original-imahnmqfe5jx7qzu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/x/t/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfe2ryxkbv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/k/r/9/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhffegbnfb4.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/j/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfyjhazrba.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 63, "title": "Ghazian Green, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "Green12", "fsn": "CAYGYNX8QHN47CGF", "status": "ACTIVE", "mrp": 2599, "price": 686, "stock": 2712, "discount": 74, "pack": 12, "color_label": "Green, Gold", "color_hex": "#2d7a3a", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGYNX8QHN47CGF", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/m/y/y/9-4-5-green12-ghazian-original-imahhjkgmhjh7ag8.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/832/832/x/9-4-5-green12-ghazian-original-imagynx8fbd7mmfu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/x/b/y/9-4-5-sp-green12-ghazian-original-imahnjfparzgafny.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/p/m/4/9-4-5-sp-green12-ghazian-original-imahnjfpzmcvqajh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/n/s/z/6-3-5-m-bracket-blue-black-marble-6-ghazian-original-imahgckrchezczyu.jpeg?q=90"] }, { "id": 64, "title": "Ghazian Blue Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "2 SUPP 2 SKY BLUE DIAMOND KNOBS", "fsn": "CAYHA3GABWUMHUEC", "status": "ACTIVE", "mrp": 699, "price": 189, "stock": 2974, "discount": 73, "pack": 4, "color_label": "Blue", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHA3GABWUMHUEC", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/w/b/h/6-3-5-2-support-2-curtain-knobs-ghazian-original-imahh64yr3dvxpyu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/w/2/h/10-4-diamond-ghazian-original-imahgcn6grbsczhb.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/z/o/f/10-4-gcb20-ghazian-original-imahh4hsfkeaehzf.jpeg?q=90"] }, { "id": 65, "title": "Ghazian Light Blue Curtain Knobs, Rod Rail Bracket Metal (Pack of 6)", "sku": "M-BRACKET LIGHT BLUE 6", "fsn": "CAYHNMQ8TBHHN2HG", "status": "ACTIVE", "mrp": 1399, "price": 498, "stock": 3000, "discount": 64, "pack": 6, "color_label": "Light Blue", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNMQ8TBHHN2HG", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/m/w/u/10-4-5-m-bracket-light-blue-6-ghazian-original-imahnmq8zmrtfdnz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/x/t/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfe2ryxkbv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/k/r/9/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhffegbnfb4.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/j/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfyjhazrba.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 66, "title": "Ghazian Pink, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 8)", "sku": "M BRACKET-PINK GOLD 8", "fsn": "CAYHMZ32K5CBFRNN", "status": "ACTIVE", "mrp": 1799, "price": 495, "stock": 2989, "discount": 72, "pack": 8, "color_label": "Pink, Gold", "color_hex": "#D81B60", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHMZ32K5CBFRNN", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/c/t/m/10-4-5-m-bracket-pink-gold-8-ghazian-original-imahmz32svgkjs8z.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/g/b/10-4-5-m-bracket-pink-gold-6-ghazian-original-imahmgfpcmsgzzhy.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/u/v/l/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduzaxzccg92.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/t/g/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduznzbhjtsu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 67, "title": "Ghazian Purple, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "M BRACKET-PURPLE GOLD 12", "fsn": "CAYHN4NP9PQHF6QZ", "status": "ACTIVE", "mrp": 2599, "price": 686, "stock": 2992, "discount": 74, "pack": 12, "color_label": "Purple, Gold", "color_hex": "#7B1FA2", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHN4NP9PQHF6QZ", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/o/z/6/10-4-5-m-bracket-purple-gold-12-ghazian-original-imahn4npbycm33yt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/7/d/10-4-5-m-bracket-purple-gold-4-ghazian-original-imahmqtyttbnpjz5.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/m/v/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfrccgheemt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/j/b/b/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfr9fkvwugf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 68, "title": "Ghazian Blue, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 8)", "sku": "M BRACKET-BLUE BLACK MARBLE 8", "fsn": "CAYHCUES7UQ6GEDE", "status": "ACTIVE", "mrp": 1799, "price": 560, "stock": 2952, "discount": 69, "pack": 8, "color_label": "Blue, Black, Gold", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHCUES7UQ6GEDE", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/a/w/l/9-4-5-8-ghazian-original-imahfqbrtjuctnhh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/w/r/g/9-4-5-8-ghazian-original-imahfqbrtgdxm7xw.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/v/a/y/9-4-5-sp-24-ghazian-original-imahnjkvgpkqmv2t.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/m/y/z/9-4-5-sp-24-ghazian-original-imahnjkvyyeqsx5q.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/x/f/e/9-4-5-8-ghazian-original-imahfqbrf2qnbvhu.jpeg?q=90"] }, { "id": 69, "title": "Ghazian Light Blue Curtain Knobs, Rod Rail Bracket Metal (Pack of 16)", "sku": "M-BRACKET LIGHT BLUE 16", "fsn": "CAYHNMQ7CCZS3SDC", "status": "ACTIVE", "mrp": 3299, "price": 1000, "stock": 3000, "discount": 70, "pack": 16, "color_label": "Light Blue", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNMQ7CCZS3SDC", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/m/m/o/10-4-5-m-bracket-light-blue-16-ghazian-original-imahnmq76sgwx9yy.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/x/t/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfe2ryxkbv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/p/y/2/10-4-5-m-bracket-light-blue-16-ghazian-original-imahnmq7twtwyfxa.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/j/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfyjhazrba.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/u/p/l/10-4-5-m-bracket-purple-gold-4-ghazian-original-imahmqtyvgz7rtbv.jpeg?q=90"] }, { "id": 70, "title": "Ghazian Black Curtain Knobs, Rod Rail Bracket Metal (Pack of 8)", "sku": "M-BRACKET BLACK  8", "fsn": "CAYHNDKYBFH8EFYY", "status": "ACTIVE", "mrp": 1799, "price": 560, "stock": 2999, "discount": 69, "pack": 8, "color_label": "Black", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNDKYBFH8EFYY", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/d/y/u/10-4-5-m-bracket-black-8-ghazian-original-imahndky82vmzyzy.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/h/a/10-4-5-m-bracket-black-4-ghazian-original-imahncmhsgz5ryyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/e/x/10-4-5-m-bracket-black-4-ghazian-original-imahncmhvqnfgcgq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/c/h/i/10-4-5-m-bracket-black-4-ghazian-original-imahncmg4mftthhr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 71, "title": "Ghazian Light Blue Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "M-BRACKET LIGHT BLUE 12", "fsn": "CAYHNMQ7HPQKVXBG", "status": "ACTIVE", "mrp": 2599, "price": 720, "stock": 3000, "discount": 72, "pack": 12, "color_label": "Light Blue", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNMQ7HPQKVXBG", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/l/u/m/10-4-5-m-bracket-light-blue-12-ghazian-original-imahnmq7vnsngqch.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/x/t/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfe2ryxkbv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/k/r/9/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhffegbnfb4.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/j/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfyjhazrba.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 72, "title": "Ghazian Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 8)", "sku": "M-BRACKET BLACK GOLD MARBLE 8", "fsn": "CAYHNBVFHZSTCYZV", "status": "ACTIVE", "mrp": 1799, "price": 489, "stock": 3000, "discount": 73, "pack": 8, "color_label": "Black, Gold", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNBVFHZSTCYZV", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/u/n/f/10-4-5-m-bracket-black-gold-marble-8-ghazian-original-imahnbvye44hzez9.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/o/u/z/6-3-5-m-bracket-black-gold-marble-12-ghazian-original-imahgvnhgyrzxkbm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/t/j/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvftvbgpgwf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/p/1/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvf2mg8hgtv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 73, "title": "Ghazian Light Blue Curtain Knobs, Rod Rail Bracket Metal (Pack of 8)", "sku": "M-BRACKET LIGHT BLUE 8", "fsn": "CAYHNMQ9ZYPPHFXF", "status": "ACTIVE", "mrp": 1799, "price": 498, "stock": 3000, "discount": 72, "pack": 8, "color_label": "Light Blue", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNMQ9ZYPPHFXF", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/u/h/n/10-4-5-m-bracket-light-blue-8-ghazian-original-imahnmq9fbx9yret.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/x/t/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfe2ryxkbv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/k/r/9/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhffegbnfb4.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/j/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfyjhazrba.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 74, "title": "Ghazian Dark Blue Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "2 SUPP 2 DARK BLUE DIAMOND KNOBS", "fsn": "CAYHAA5SH8BYSSYK", "status": "ACTIVE", "mrp": 699, "price": 183, "stock": 3000, "discount": 74, "pack": 4, "color_label": "Dark Blue", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHAA5SH8BYSSYK", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/i/y/d/6-3-5-2-support-2-curtain-knobs-ghazian-original-imahaa5sxhntcnzn.jpeg?q=90"] }, { "id": 75, "title": "Ghazian Red Curtain Knobs, Rod Rail Bracket Metal (Pack of 4)", "sku": "2 SUPP 2 RED DIAMOND KNOBS", "fsn": "CAYHAA6HMZAVGWHT", "status": "ACTIVE", "mrp": 699, "price": 183, "stock": 3000, "discount": 74, "pack": 4, "color_label": "Red", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHAA6HMZAVGWHT", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/t/n/2/6-3-5-2-support-2-curtain-knobs-ghazian-original-imahaa6hckwdzhzj.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/f/r/0/6-3-5-2-support-2-curtain-knobs-ghazian-original-imahaa6hnhfkzqz9.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 76, "title": "Ghazian Black Curtain Knobs, Rod Rail Bracket Metal (Pack of 6)", "sku": "M-BRACKET BLACK 6", "fsn": "CAYHNDKYZ2HWZKZA", "status": "ACTIVE", "mrp": 1399, "price": 448, "stock": 2999, "discount": 68, "pack": 6, "color_label": "Black", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNDKYZ2HWZKZA", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/y/f/4/10-4-5-m-bracket-black-6-ghazian-original-imahndkyzndxdug5.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/h/a/10-4-5-m-bracket-black-4-ghazian-original-imahncmhsgz5ryyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/e/x/10-4-5-m-bracket-black-4-ghazian-original-imahncmhvqnfgcgq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/c/h/i/10-4-5-m-bracket-black-4-ghazian-original-imahncmg4mftthhr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 77, "title": "Ghazian Light Blue Curtain Knobs, Rod Rail Bracket Metal (Pack of 2)", "sku": "M-BRACKET LIGHT BLUE 2", "fsn": "CAYHNHHGA8VEFGH9", "status": "ACTIVE", "mrp": 599, "price": 198, "stock": 3000, "discount": 67, "pack": 2, "color_label": "Light Blue", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNHHGA8VEFGH9", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/b/q/o/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhftgbj8zss.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/x/t/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfe2ryxkbv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/k/r/9/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhffegbnfb4.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/j/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfyjhazrba.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 78, "title": "Ghazian Black Curtain Knobs, Rod Rail Bracket Metal (Pack of 2)", "sku": "M-BRACKET BLACK 2", "fsn": "CAYHNDK8FWSTF7EN", "status": "ACTIVE", "mrp": 599, "price": 180, "stock": 3000, "discount": 70, "pack": 2, "color_label": "Black", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNDK8FWSTF7EN", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/j/o/r/10-4-5-m-bracket-black-2-ghazian-original-imahndk8tdxphja7.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/h/a/10-4-5-m-bracket-black-4-ghazian-original-imahncmhsgz5ryyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/e/x/10-4-5-m-bracket-black-4-ghazian-original-imahncmhvqnfgcgq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/c/h/i/10-4-5-m-bracket-black-4-ghazian-original-imahncmg4mftthhr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 79, "title": "Ghazian Light Blue Curtain Knobs, Rod Rail Bracket Metal (Pack of 20)", "sku": "M-BRACKET LIGHT BLUE 20", "fsn": "CAYHNMQFDJQZYFRZ", "status": "ACTIVE", "mrp": 3999, "price": 1248, "stock": 3000, "discount": 69, "pack": 20, "color_label": "Light Blue", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNMQFDJQZYFRZ", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/m/p/w/10-4-5-m-bracket-light-blue-20-ghazian-original-imahnmqfkycgh8g9.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/x/t/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfe2ryxkbv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/k/r/9/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhffegbnfb4.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/j/m/10-4-5-m-bracket-light-blue-2-ghazian-original-imahnhhfyjhazrba.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 80, "title": "Ghazian Black Curtain Knobs, Rod Rail Bracket Metal (Pack of 16)", "sku": "M-BRACKET BLACK 16", "fsn": "CAYHNDJXXEH57MZG", "status": "ACTIVE", "mrp": 3299, "price": 949, "stock": 2999, "discount": 71, "pack": 16, "color_label": "Black", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHNDJXXEH57MZG", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/9/o/n/10-4-5-m-bracket-black-16-ghazian-original-imahndjwm9gbshku.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/h/a/10-4-5-m-bracket-black-4-ghazian-original-imahncmhsgz5ryyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/e/x/10-4-5-m-bracket-black-4-ghazian-original-imahncmhvqnfgcgq.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/c/h/i/10-4-5-m-bracket-black-4-ghazian-original-imahncmg4mftthhr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 81, "title": "Ghazian Red, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 12)", "sku": "12p12R", "fsn": "CAYGMFVGBMSYZZZZ", "status": "ACTIVE", "mrp": 2599, "price": 699, "stock": 2994, "discount": 73, "pack": 12, "color_label": "Red, Gold", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGMFVGBMSYZZZZ", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/q/b/z/9-4-5-12p4r-ghazian-original-imagmfvganwtthyy.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/b/o/9-5-4-5-redgold12-ghazian-original-imagzgazhzfaaugc.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/b/y/v/10-4-5-sp-rmcb-ghazian-original-imahne62cq76ezyg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/y/b/u/10-4-5-sp-rmcb-ghazian-original-imahne62yzm9vnyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 82, "title": "Ghazian Purple, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 24)", "sku": "M BRACKET-PURPLE GOLD 24", "fsn": "CAYHN6WGGBVBAZD2", "status": "ACTIVE", "mrp": 4599, "price": 1371, "stock": 3000, "discount": 70, "pack": 24, "color_label": "Purple, Gold", "color_hex": "#7B1FA2", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHN6WGGBVBAZD2", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/u/f/s/10-4-5-m-bracket-purple-gold-24-ghazian-original-imahn6vwmv3pzzqj.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/7/d/10-4-5-m-bracket-purple-gold-4-ghazian-original-imahmqtyttbnpjz5.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/m/v/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfrccgheemt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/j/b/b/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfr9fkvwugf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 83, "title": "Ghazian Pink, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 6)", "sku": "M BRACKET-PINK GOLD 6", "fsn": "CAYHMGFPWNERA6ZM", "status": "ACTIVE", "mrp": 1399, "price": 426, "stock": 3000, "discount": 70, "pack": 6, "color_label": "Pink, Gold", "color_hex": "#D81B60", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHMGFPWNERA6ZM", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/d/i/s/10-4-5-m-bracket-pink-gold-6-ghazian-original-imahmkzszmnb5emk.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/o/c/5/10-4-5-m-bracket-pink-gold-4-ghazian-original-imahmknwzkmnmequ.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/u/v/l/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduzaxzccg92.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/t/g/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduznzbhjtsu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/r/x/6-3-5-blue-diamond-6-ghazian-original-imahg43zw4czzwhm.jpeg?q=90"] }, { "id": 84, "title": "Ghazian White, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 6)", "sku": "M-WHITE GOLD MARBLE 6", "fsn": "CAYH9K5F5FNZ3VWV", "status": "ACTIVE", "mrp": 1399, "price": 436, "stock": 2915, "discount": 69, "pack": 6, "color_label": "White, Gold", "color_hex": "#F5F5F5", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9K5F5FNZ3VWV", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/v/d/m/4-13-6-ghazian-original-imahguqf6avhsyfy.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/l/3/9-4-5-24-ghazian-original-imahg99fggfyheyw.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/832/832/9-4-5-24-ghazian-original-imahnjfguj2fzu6g.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/s/7/x/9-4-5-24-ghazian-original-imahnjfg4u6qwztz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 85, "title": "Ghazian Blue, Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 6)", "sku": "M BRACKET-BLUE BLACK MARBLE 6", "fsn": "CAYHEFMU7GXBHUPE", "status": "ACTIVE", "mrp": 1399, "price": 426, "stock": 2995, "discount": 70, "pack": 6, "color_label": "Blue, Black, Gold", "color_hex": "#1a6fad", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHEFMU7GXBHUPE", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/v/r/f/6-3-5-m-bracket-blue-black-marble-6-ghazian-original-imahgupwrbrhyhzu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/c/m/i/6-3-5-m-bracket-blue-black-marble-6-ghazian-original-imahgupwnrxakrdp.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/3/f/i/6-3-5-m-bracket-blue-black-marble-6-ghazian-original-imahndwxj4htrc52.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/u/f/6-3-5-m-bracket-blue-black-marble-6-ghazian-original-imahndwxjwcgdaqv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/832/832/u/6-3-5-m-bracket-blue-black-marble-6-ghazian-original-imahgupwebux7gar.jpeg?q=90"] }, { "id": 86, "title": "Ghazian Maroon Curtain Knobs, Rod Rail Bracket Metal (Pack of 24)", "sku": "M-MAROON GOLD 24", "fsn": "CAYH9PFDBYXGYDHM", "status": "ACTIVE", "mrp": 4599, "price": 1316, "stock": 2932, "discount": 71, "pack": 24, "color_label": "Maroon", "color_hex": "#800000", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9PFDBYXGYDHM", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/h/u/d/9-4-5-24-ghazian-original-imahgckndqwbwysn.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/e/j/v/9-4-5-24-ghazian-original-imahgcknszhdq74c.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/7/a/9-4-5-24-ghazian-original-imahgcknyhydq4vt.jpeg?q=90"] }, { "id": 87, "title": "NRT Silver Curtain Hooks, Curtain Knobs, Curtain Rods, Rod Rail Bracket Metal (Pack of 12)", "sku": "12 pcs support light", "fsn": "CAYGFBQ2YGF57GAJ", "status": "ACTIVE", "mrp": 699, "price": 242, "stock": 2811, "discount": 65, "pack": 12, "color_label": "Silver", "color_hex": "#9E9E9E", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYGFBQ2YGF57GAJ", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/p/j/d/10-5-stainless-steel-curtain-center-supporter-or-curtain-holder-original-imahmsgn4r468mgc.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/w/2/f/10-5-stainless-steel-curtain-center-supporter-or-curtain-holder-original-imahmsgneaqgf9mn.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/832/832/e/10-5-stainless-steel-curtain-center-supporter-or-curtain-holder-original-imahmsgnmzypzjss.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/q/c/a/9-5-4-pzi-purple-04-paradise-original-imahmpczzhda5gag.jpeg?q=90"] }, { "id": 88, "title": "Ghazian Purple, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 2)", "sku": "M BRACKET-PURPLE GOLD 2", "fsn": "CAYHN72PRZWHFHGG", "status": "ACTIVE", "mrp": 599, "price": 169, "stock": 3000, "discount": 72, "pack": 2, "color_label": "Purple, Gold", "color_hex": "#7B1FA2", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHN72PRZWHFHGG", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/d/m/y/10-4-5-m-bracket-purple-gold-4-ghazian-original-imahmqtygh9gez2y.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/d/7/d/10-4-5-m-bracket-purple-gold-4-ghazian-original-imahmqtyttbnpjz5.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/r/m/v/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfrccgheemt.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/j/b/b/10-4-5-m-bracket-purple-gold-2-ghazian-original-imahndfr9fkvwugf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 89, "title": "Ghazian Black, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 16)", "sku": "M-BRACKET BLACK GOLD MARBLE 16", "fsn": "CAYHN88GZ8HJT6XF", "status": "ACTIVE", "mrp": 3299, "price": 912, "stock": 3000, "discount": 72, "pack": 16, "color_label": "Black, Gold", "color_hex": "#222222", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHN88GZ8HJT6XF", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/c/j/g/10-4-5-m-bracket-black-gold-marble-16-ghazian-original-imahn8y27mtvqyjh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/o/u/z/6-3-5-m-bracket-black-gold-marble-12-ghazian-original-imahgvnhgyrzxkbm.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/t/j/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvftvbgpgwf.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/a/p/1/6-3-5-m-bracket-black-gold-marble-4-ghazian-original-imahndvf2mg8hgtv.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 90, "title": "Ghazian Pink, Gold Curtain Knobs, Rod Rail Bracket Metal (Pack of 24)", "sku": "M BRACKET-PINK GOLD 24", "fsn": "CAYHMZ5FMHMRQETB", "status": "ACTIVE", "mrp": 4599, "price": 1371, "stock": 3000, "discount": 70, "pack": 24, "color_label": "Pink, Gold", "color_hex": "#D81B60", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYHMZ5FMHMRQETB", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/w/p/a/10-4-5-m-bracket-pink-gold-24-ghazian-original-imahmz5ydnw4bd5m.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/t/g/b/10-4-5-m-bracket-pink-gold-6-ghazian-original-imahmgfpcmsgzzhy.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/u/v/l/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduzaxzccg92.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/h/t/g/10-4-5-m-bracket-pink-gold-12-ghazian-original-imahnduznzbhjtsu.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }, { "id": 91, "title": "Ghazian Silver Curtain Knobs, Rod Rail Bracket Metal (Pack of 2)", "sku": "Silver gold 2 pcs", "fsn": "CAYH9AVNBUTVGSZF", "status": "ACTIVE", "mrp": 599, "price": 152, "stock": 3074, "discount": 75, "pack": 2, "color_label": "Silver", "color_hex": "#9E9E9E", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9AVNBUTVGSZF", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/o/s/i/9-4-5-silver12-ghazian-original-imah2b4rzadz2sgr.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/7/f/b/6-3-5-silver4-ghazian-original-imagypfgwsxhynre.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/j/n/5/4-13-sp-6-ghazian-original-imahnh76yzznuwnz.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/g/o/m/4-13-sp-6-ghazian-original-imahnh77xgyw5mne.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/l/m/i/10-4-5-m-bracket-purple-gold-6-ghazian-original-imahn2fnau5yvj5y.jpeg?q=90"] }, { "id": 92, "title": "Ghazian Red Curtain Knobs, Rod Rail Bracket Metal (Pack of 2)", "sku": "Curtain Bracket 2", "fsn": "CAYH9AKVHQEG82ND", "status": "ACTIVE", "mrp": 599, "price": 128, "stock": 3000, "discount": 79, "pack": 2, "color_label": "Red", "color_hex": "#C62828", "flipkart_url": "https://www.flipkart.com/product/p/itme?pid=CAYH9AKVHQEG82ND", "images": ["https://img.fkcdn.com/image/xif0q/curtain-accessory/s/2/n/6-3-5-red-gold-curtain-bracket-ghazian-original-imahg8fmsdxg5rsw.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/p/z/b/6-3-5-red-gold-curtain-bracket-ghazian-original-imahg8fstmtgunqx.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/b/y/v/10-4-5-sp-rmcb-ghazian-original-imahne62cq76ezyg.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/shopsy-curtain-accessory/y/b/u/10-4-5-sp-rmcb-ghazian-original-imahne62yzm9vnyh.jpeg?q=90", "https://img.fkcdn.com/image/xif0q/curtain-accessory/1/f/y/9-4-5-bm16-ghazian-original-imagj23ebwvpbgpn.jpeg?q=90"] }];
+
+        let activeColor = null;
+
+        function buildColorPills() {
+            const colors = [...new Set(PRODUCTS.map(p => p.color_label))].sort();
+            document.getElementById('color-pills').innerHTML = colors.map(c => {
+                const hex = PRODUCTS.find(p => p.color_label === c).color_hex;
+                return `<div class="color-pill" onclick="toggleColor('${c}')" data-color="${c}"><div class="color-dot" style="background:${hex};${c.includes('White') ? 'border:1.5px solid #ccc;' : ''}"></div>${c}</div>`;
+            }).join('');
+        }
+
+        function toggleColor(color) {
+            activeColor = activeColor === color ? null : color;
+            document.querySelectorAll('.color-pill').forEach(p => p.classList.toggle('active', p.dataset.color === activeColor));
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const search = document.getElementById('search-input').value.toLowerCase();
+            const pack = document.getElementById('pack-filter').value;
+            const sort = document.getElementById('sort-filter').value;
+            let filtered = PRODUCTS.filter(p => {
+                const ms = !search || p.title.toLowerCase().includes(search) || p.color_label.toLowerCase().includes(search);
+                const mp = !pack || p.pack === parseInt(pack);
+                const mc = !activeColor || p.color_label === activeColor;
+                return ms && mp && mc;
+            });
+            if (sort === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+            else if (sort === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+            else if (sort === 'discount') filtered.sort((a, b) => b.discount - a.discount);
+            else if (sort === 'pack-asc') filtered.sort((a, b) => a.pack - b.pack);
+            else if (sort === 'pack-desc') filtered.sort((a, b) => b.pack - a.pack);
+            renderGrid(filtered);
+            document.getElementById('result-count').textContent = `${filtered.length} of ${PRODUCTS.length}`;
+            document.getElementById('nav-count').textContent = `${filtered.length} Products`;
+        }
+
+        function renderGrid(products) {
+            const grid = document.getElementById('product-grid');
+            const empty = document.getElementById('empty-state');
+            if (!products.length) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
+            empty.style.display = 'none';
+            grid.innerHTML = products.map(p => {
+                const img = p.images && p.images.length ? p.images[0] : '';
+                return `<div class="product-card" onclick="showProduct(${p.id})">
+      <div class="product-card-img" style="background:${p.color_hex}12">
+        ${img ? `<img src="${img}" alt="${p.title}" loading="lazy" onerror="this.parentElement.style.background='${p.color_hex}22'">` : ''}
+        <div class="discount-badge">${p.discount}% off</div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-color">${p.color_label}</div>
+        <div class="product-card-title">${p.title}</div>
+        <div class="product-card-pricing">
+          <span class="price-current">₹${p.price.toLocaleString('en-IN')}</span>
+          <span class="price-mrp">₹${p.mrp.toLocaleString('en-IN')}</span>
+          <span class="pack-tag">×${p.pack}</span>
+        </div>
+      </div>
+    </div>`;
+            }).join('');
+        }
+
+        function setMainImg(src) {
+            const img = document.getElementById('pd-main-img');
+            img.style.opacity = '0';
+            img.onload = () => img.style.opacity = '1';
+            img.src = src;
+            img.style.display = 'block';
+        }
+
+        function showProduct(id) {
+            const p = PRODUCTS.find(x => x.id === id); if (!p) return;
+            document.getElementById('pd-name').textContent = p.title;
+            document.getElementById('pd-price').textContent = '₹' + p.price.toLocaleString('en-IN');
+            document.getElementById('pd-mrp').textContent = '₹' + p.mrp.toLocaleString('en-IN');
+            document.getElementById('pd-discount').textContent = p.discount + '% off';
+            document.getElementById('pd-savings').textContent = `You save ₹${(p.mrp - p.price).toLocaleString('en-IN')}`;
+            document.getElementById('pd-color').textContent = p.color_label;
+            document.getElementById('pd-pack').textContent = 'Pack of ' + p.pack;
+            document.getElementById('pd-sku').textContent = p.sku;
+            document.getElementById('pd-flipkart-btn').href = p.flipkart_url;
+            document.getElementById('pd-sku-note').textContent = 'FSN: ' + p.fsn;
+            document.getElementById('pd-brand').textContent = (p.title.startsWith('NRT') ? 'NRT' : 'Ghazian') + ' · Curtain Hardware';
+
+            // Stock
+            const si = document.getElementById('pd-stock');
+            si.className = p.stock < 100 ? 'stock-indicator low' : 'stock-indicator';
+            si.querySelector('span').textContent = p.stock < 100 ? `Only ${p.stock} left in stock` : `${p.stock.toLocaleString('en-IN')} in stock`;
+
+            // Images
+            const imgs = p.images && p.images.length ? p.images : [];
+            if (imgs.length) {
+                setMainImg(imgs[0]);
+                document.getElementById('pd-thumbs').innerHTML = imgs.map((url, i) =>
+                    `<div class="thumb${i === 0 ? ' active' : ''}" onclick="selectThumb(this,'${url}')"><img src="${url}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`
+                ).join('');
+            } else {
+                document.getElementById('pd-main-img').style.display = 'none';
+                document.getElementById('pd-thumbs').innerHTML = '';
+            }
+
+            // Related
+            const related = PRODUCTS.filter(x => x.color_label === p.color_label && x.id !== p.id).sort((a, b) => a.pack - b.pack);
+            const rs = document.getElementById('related-section');
+            if (related.length) {
+                rs.style.display = 'block';
+                document.getElementById('related-grid').innerHTML = related.map(r => {
+                    const ri = r.images && r.images.length ? r.images[0] : '';
+                    return `<div class="product-card" onclick="showProduct(${r.id})">
+        <div class="product-card-img" style="background:${r.color_hex}12;height:130px">
+          ${ri ? `<img src="${ri}" loading="lazy" style="height:130px">` : ''}
+          <div class="discount-badge">${r.discount}% off</div>
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-color" style="font-size:.62rem">Pack of ${r.pack}</div>
+          <div class="product-card-pricing" style="margin-top:4px">
+            <span class="price-current" style="font-size:.92rem">₹${r.price.toLocaleString('en-IN')}</span>
+            <span class="price-mrp" style="font-size:.68rem">₹${r.mrp.toLocaleString('en-IN')}</span>
+          </div>
+        </div>
+      </div>`;
+                }).join('');
+            } else { rs.style.display = 'none'; }
+
+            document.getElementById('shop-page').style.display = 'none';
+            document.getElementById('product-page').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function selectThumb(el, url) {
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            setMainImg(url);
+        }
+
+        function showShop() {
+            document.getElementById('product-page').style.display = 'none';
+            document.getElementById('shop-page').style.display = 'block';
+            document.getElementById('nav-count').textContent = `${PRODUCTS.length} Products`;
+            window.scrollTo(0, 0);
+        }
+
+        function resetFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('pack-filter').value = '';
+            document.getElementById('sort-filter').value = 'default';
+            activeColor = null;
+            document.querySelectorAll('.color-pill').forEach(p => p.classList.remove('active'));
+            applyFilters();
+        }
+
+        buildColorPills();
+        applyFilters();
+    </script>
+</body>
+
+</html>
