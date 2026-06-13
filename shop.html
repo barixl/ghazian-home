@@ -1,0 +1,448 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Curtain Knobs — Ghazian Home</title>
+    <meta name="description" content="Browse our full collection of premium curtain knobs and rod rail brackets. Filter by colour and pack size.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #B8850A;
+            --green-dark: #8F6508;
+            --green-light: #D4A820;
+            --cream: #F5EDD5;
+            --cream-soft: #FAF4E4;
+            --ink: #1C1400;
+            --muted: #6B5C30;
+            --gold: #F0D870;
+            --line: #E8D8AA;
+            --red: #B93333;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Open Sans', system-ui, sans-serif; background: #FAF5E4; color: var(--ink); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+        img { display: block; max-width: 100%; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        button { font-family: inherit; }
+        .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+        /* ── TOP STRIP ── */
+        .top-strip { background: var(--green); color: #fff; font-size: 13px; padding: 10px 0; }
+        .top-strip-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .top-left, .top-right { display: flex; align-items: center; gap: 14px; }
+        .phone-pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,.35); border-radius: 30px; padding: 4px 14px 4px 4px; }
+        .phone-pill .icon { width: 22px; height: 22px; background: #fff; color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+        .top-center { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+        .social-row { display: flex; gap: 8px; }
+        .social-row a { width: 24px; height: 24px; background: #fff; color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; transition: transform .25s; }
+        .social-row a:hover { transform: translateY(-2px); }
+
+        /* ── HEADER ── */
+        .header { background: #fff; padding: 16px 0; position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 12px rgba(0,0,0,.04); }
+        .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .brand-mark { font-weight: 800; font-size: 32px; color: var(--green); font-style: italic; line-height: 1; }
+        .brand-text .name { font-weight: 700; font-size: 18px; color: var(--ink); font-style: italic; }
+        .brand-text .tag { font-size: 9px; letter-spacing: .18em; color: var(--muted); text-transform: uppercase; margin-top: 2px; display: flex; align-items: center; gap: 6px; }
+        .brand-text .tag::before, .brand-text .tag::after { content: ''; height: 1px; flex: 1; background: var(--line); }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links a { font-size: 14px; color: var(--ink); font-weight: 500; position: relative; padding: 6px 0; }
+        .nav-links a.active { color: var(--green); font-weight: 700; }
+        .nav-links a::after { content: ''; position: absolute; left: 50%; bottom: -2px; width: 0; height: 2px; background: var(--green); transition: all .3s; transform: translateX(-50%); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 60%; }
+        .book-btn { background: var(--green); color: #fff; border: none; padding: 11px 22px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: background .25s; }
+        .book-btn:hover { background: var(--green-dark); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+        .hamburger span { width: 24px; height: 3px; background: var(--green); transition: .3s; border-radius: 2px; }
+        .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        /* ── SHOP HERO ── */
+        .shop-hero { background: var(--green); padding: 36px 0; color: #fff; }
+        .breadcrumb { font-size: 12px; opacity: .6; margin-bottom: 8px; }
+        .breadcrumb a { color: #fff; }
+        .breadcrumb a:hover { opacity: .85; }
+        .breadcrumb span { margin: 0 6px; opacity: .5; }
+        .shop-hero h1 { font-size: clamp(22px, 3vw, 32px); font-weight: 700; margin-bottom: 6px; }
+        .shop-hero p { font-size: 13px; opacity: .72; }
+
+        /* ── FILTER BAR ── */
+        .filter-bar { background: var(--cream); border-bottom: 1px solid var(--line); padding: 16px 0; position: sticky; top: 65px; z-index: 40; }
+        .filter-row-1 { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end; margin-bottom: 14px; }
+        .search-box { position: relative; flex: 1; min-width: 180px; max-width: 300px; }
+        .search-box input { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 9px 14px 9px 36px; font-size: 13px; font-family: inherit; background: #fff; color: var(--ink); outline: none; transition: border-color .2s; }
+        .search-box input:focus { border-color: var(--green); }
+        .search-box .sico { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); font-size: 14px; }
+        .fgroup { display: flex; flex-direction: column; gap: 4px; }
+        .fgroup label { font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 600; }
+        .fgroup select { border: 1px solid var(--line); border-radius: 8px; padding: 9px 32px 9px 12px; font-size: 13px; font-family: inherit; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%23888' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 10px center; -webkit-appearance: none; appearance: none; color: var(--ink); outline: none; cursor: pointer; transition: border-color .2s; }
+        .fgroup select:focus { border-color: var(--green); }
+        .count-badge { margin-left: auto; font-size: 13px; color: var(--muted); white-space: nowrap; align-self: flex-end; }
+        .clear-all { background: none; border: 1px solid var(--line); border-radius: 8px; padding: 9px 14px; font-size: 12px; color: var(--muted); cursor: pointer; transition: all .2s; align-self: flex-end; }
+        .clear-all:hover { border-color: var(--green); color: var(--ink); }
+
+        .filter-row-2 { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
+        .filter-row-2 .flabel { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 600; margin-right: 2px; flex-shrink: 0; }
+        .cpill { display: inline-flex; align-items: center; gap: 5px; padding: 4px 11px 4px 7px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; cursor: pointer; font-size: 12px; font-weight: 500; color: var(--muted); transition: all .18s; user-select: none; white-space: nowrap; }
+        .cpill:hover { border-color: var(--green); color: var(--ink); }
+        .cpill.active { border-color: var(--green); background: var(--green); color: #fff; }
+        .cdot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(0,0,0,.15); }
+
+        /* ── PRODUCT GRID ── */
+        .shop-main { padding: 28px 0 70px; }
+        .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+
+        .prod-card { background: #fff; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); cursor: pointer; transition: transform .22s, box-shadow .22s, border-color .22s; text-decoration: none; color: inherit; display: block; }
+        .prod-card:hover { transform: translateY(-5px); box-shadow: 0 14px 30px rgba(0,0,0,.1); border-color: #c8b98a; }
+        .prod-img { position: relative; background: var(--cream-soft); aspect-ratio: 1/1; overflow: hidden; }
+        .prod-img img { width: 100%; height: 100%; object-fit: contain; padding: 14px; transition: transform .35s; }
+        .prod-card:hover .prod-img img { transform: scale(1.06); }
+        .disc-badge { position: absolute; top: 9px; left: 9px; background: var(--red); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .04em; padding: 3px 8px; border-radius: 5px; }
+        .pack-badge { position: absolute; top: 9px; right: 9px; background: var(--green); color: #fff; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 5px; }
+        .prod-body { padding: 13px 14px 14px; border-top: 1px solid var(--line); }
+        .prod-color { display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+        .pcdot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(0,0,0,.1); flex-shrink: 0; }
+        .prod-color span { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+        .prod-title { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.4; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 36px; }
+        .prod-pricing { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+        .pprice { font-size: 15px; font-weight: 700; color: var(--ink); }
+        .pmrp { font-size: 12px; color: var(--muted); text-decoration: line-through; }
+        .psave { font-size: 11px; font-weight: 600; color: #2d6e2d; background: #edf6ed; padding: 2px 7px; border-radius: 999px; margin-left: auto; }
+
+        /* ── EMPTY STATE ── */
+        .empty-state { text-align: center; padding: 80px 20px; }
+        .empty-state h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+        .empty-state p { color: var(--muted); font-size: 14px; }
+
+        /* ── FOOTER ── */
+        .footer { background: var(--green); color: #fff; padding: 50px 0 0; margin-top: 40px; }
+        .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 30px; padding-bottom: 30px; }
+        .footer .brand-mark { color: #fff; }
+        .footer .brand-text .name { color: #fff; }
+        .footer .brand-text .tag { color: rgba(255,255,255,.6); }
+        .footer .brand-text .tag::before, .footer .brand-text .tag::after { background: rgba(255,255,255,.2); }
+        .footer-about { font-size: 12px; color: rgba(255,255,255,.7); line-height: 1.7; margin-bottom: 16px; margin-top: 14px; }
+        .footer-social { display: flex; gap: 8px; }
+        .footer-social a { width: 30px; height: 30px; background: rgba(255,255,255,.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; transition: background .25s; }
+        .footer-social a:hover { background: var(--gold); color: var(--green); }
+        .footer-col h5 { font-size: 14px; font-weight: 700; margin-bottom: 14px; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul a { font-size: 12px; color: rgba(255,255,255,.7); transition: color .25s; }
+        .footer-col ul a:hover { color: var(--gold); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,.15); padding: 18px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; font-size: 11px; color: rgba(255,255,255,.55); }
+        .footer-bottom-links { display: flex; gap: 24px; flex-wrap: wrap; }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:1024px) {
+            .products-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .header.menu-open .nav-links { display: flex; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; padding: 20px 24px; gap: 14px; border-top: 1px solid var(--line); box-shadow: 0 8px 16px rgba(0,0,0,.08); }
+            .header { position: relative; }
+            .header.menu-open { position: sticky; }
+        }
+        @media(max-width:768px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .filter-bar { position: relative; top: 0; }
+        }
+        @media(max-width:680px) {
+            .wrap { padding: 0 14px; }
+            .top-center { display: none; }
+            .top-strip-inner { justify-content: center; }
+            .filter-row-1 { gap: 10px; }
+            .search-box { max-width: 100%; min-width: 0; flex: 1 1 100%; }
+        }
+        @media(max-width:400px) {
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP STRIP -->
+<div class="top-strip">
+    <div class="wrap top-strip-inner">
+        <div class="top-left">
+            <span class="phone-pill"><span class="icon">✆</span>+971 50 213 6026</span>
+        </div>
+        <div class="top-center">
+            <span>🚚</span><span>Free &amp; Fast Delivery Across UAE</span>
+        </div>
+        <div class="top-right social-row">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">◉</a>
+            <a href="#" aria-label="Pinterest">P</a>
+            <a href="#" aria-label="Twitter X">𝕏</a>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+    <div class="wrap nav">
+        <a href="ghazian.html" class="brand">
+            <span class="brand-mark">A</span>
+            <div class="brand-text">
+                <div class="name">Ghazian Home</div>
+                <div class="tag">Curtain Knobs and Blinds</div>
+            </div>
+        </a>
+        <nav class="nav-links" id="navLinks">
+            <a href="ghazian.html">Home</a>
+            <a href="ghazian.html#collections">Curtain Knobs</a>
+            <a href="ghazian.html#collections">Blinds</a>
+            <a href="ghazian.html#services">Services</a>
+            <a href="shop.html" class="active">Shop</a>
+            <a href="ghazian.html#about">About Us</a>
+            <a href="ghazian.html#contact">Contact Us</a>
+        </nav>
+        <div style="display:flex;align-items:center;gap:10px;">
+            <button class="book-btn" onclick="window.location.href='ghazian.html#contact'">Book Home Visit</button>
+            <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </div>
+</header>
+
+<!-- SHOP HERO -->
+<div class="shop-hero">
+    <div class="wrap">
+        <div class="breadcrumb"><a href="ghazian.html">Home</a><span>›</span>Shop</div>
+        <h1>Shop Curtain Knobs &amp; Brackets</h1>
+        <p id="heroCount">92 products · Premium Metal · Free Delivery Across India</p>
+    </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+    <div class="wrap">
+        <div class="filter-row-1">
+            <div class="search-box">
+                <span class="sico">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search colour, style…" autocomplete="off">
+            </div>
+            <div class="fgroup">
+                <label>Pack Size</label>
+                <select id="packFilter">
+                    <option value="">All Sizes</option>
+                    <option value="1">Pack of 1</option>
+                    <option value="2">Pack of 2</option>
+                    <option value="4">Pack of 4</option>
+                    <option value="6">Pack of 6</option>
+                    <option value="8">Pack of 8</option>
+                    <option value="12">Pack of 12</option>
+                    <option value="16">Pack of 16</option>
+                    <option value="20">Pack of 20</option>
+                    <option value="24">Pack of 24</option>
+                </select>
+            </div>
+            <div class="fgroup">
+                <label>Sort By</label>
+                <select id="sortFilter">
+                    <option value="">Featured</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="discount">Best Discount</option>
+                    <option value="pack-asc">Pack: Small → Large</option>
+                    <option value="pack-desc">Pack: Large → Small</option>
+                </select>
+            </div>
+            <span class="count-badge" id="countBadge">92 products</span>
+            <button class="clear-all" id="clearAll">Clear filters</button>
+        </div>
+        <div class="filter-row-2" id="colorPills">
+            <span class="flabel">Colour:</span>
+        </div>
+    </div>
+</div>
+
+<!-- SHOP MAIN -->
+<div class="shop-main">
+    <div class="wrap">
+        <div class="products-grid" id="productsGrid"></div>
+        <div class="empty-state" id="emptyState" style="display:none;">
+            <h3>No products found</h3>
+            <p>Try adjusting your filters or clearing your search.</p>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer-grid">
+            <div>
+                <div class="brand">
+                    <span class="brand-mark">A</span>
+                    <div class="brand-text">
+                        <div class="name">Ghazian Home</div>
+                        <div class="tag">Curtain Knobs and Blinds</div>
+                    </div>
+                </div>
+                <p class="footer-about">Premium curtain knobs and blinds for homes across UAE. Expertly designed and professionally installed.</p>
+                <div class="footer-social"><a href="#">f</a><a href="#">◉</a><a href="#">P</a><a href="#">𝕏</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Curtain Knobs</h5>
+                <ul>
+                    <li><a href="shop.html?color=Black">Blackout Curtain Knobs</a></li>
+                    <li><a href="shop.html">Motorized Curtain Knobs</a></li>
+                    <li><a href="shop.html">Sheer Curtain Knobs</a></li>
+                    <li><a href="shop.html?color=Maroon%2C+Gold">Velvet Curtain Knobs</a></li>
+                    <li><a href="shop.html">Eyelet Curtain Knobs</a></li>
+                    <li><a href="shop.html">Soundproof Curtain Knobs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>By Pack Size</h5>
+                <ul>
+                    <li><a href="shop.html?pack=4">Pack of 4</a></li>
+                    <li><a href="shop.html?pack=6">Pack of 6</a></li>
+                    <li><a href="shop.html?pack=12">Pack of 12</a></li>
+                    <li><a href="shop.html?pack=16">Pack of 16</a></li>
+                    <li><a href="shop.html?pack=20">Pack of 20</a></li>
+                    <li><a href="shop.html?pack=24">Pack of 24</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>By Space</h5>
+                <ul>
+                    <li><a href="ghazian.html">Bedroom</a></li>
+                    <li><a href="ghazian.html">Living Room</a></li>
+                    <li><a href="ghazian.html">Office</a></li>
+                    <li><a href="ghazian.html">Kitchen</a></li>
+                    <li><a href="ghazian.html">Dining Area</a></li>
+                    <li><a href="ghazian.html">Balcony</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>By Colour</h5>
+                <ul>
+                    <li><a href="shop.html?color=Red">Red Curtain Knobs</a></li>
+                    <li><a href="shop.html?color=Blue">Blue Curtain Knobs</a></li>
+                    <li><a href="shop.html?color=Green%2C+Gold">Green Curtain Knobs</a></li>
+                    <li><a href="shop.html?color=Pink%2C+Gold">Pink Curtain Knobs</a></li>
+                    <li><a href="shop.html?color=Silver">Silver Curtain Knobs</a></li>
+                    <li><a href="shop.html?color=Maroon%2C+Gold">Maroon Curtain Knobs</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© Ghazian Home 2026. All Rights Reserved.</span>
+            <div class="footer-bottom-links">
+                <a href="ghazian.html">Home</a><a href="shop.html">Shop</a>
+                <a href="ghazian.html#contact">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="products-data.js"></script>
+<script>
+    /* ── helpers ── */
+    function inr(amount) { return '₹' + amount.toLocaleString('en-IN'); }
+    function slug(s) { return encodeURIComponent(s); }
+
+    /* ── build unique colour list ── */
+    const colorMap = {};
+    PRODUCTS.forEach(p => { colorMap[p.color_label] = p.color_hex; });
+    const allColors = Object.keys(colorMap).sort();
+
+    /* ── state ── */
+    const params = new URLSearchParams(location.search);
+    let activeColor = params.get('color') || '';
+    let activePack  = params.get('pack')  || '';
+    let searchQ     = '';
+    let sortMode    = '';
+
+    /* ── initialise selects from URL ── */
+    if (activePack) document.getElementById('packFilter').value = activePack;
+
+    /* ── render colour pills ── */
+    const pillsRow = document.getElementById('colorPills');
+    allColors.forEach(c => {
+        const btn = document.createElement('button');
+        btn.className = 'cpill' + (c === activeColor ? ' active' : '');
+        btn.dataset.color = c;
+        btn.innerHTML = `<span class="cdot" style="background:${colorMap[c]}"></span>${c}`;
+        btn.addEventListener('click', () => {
+            activeColor = (activeColor === c) ? '' : c;
+            document.querySelectorAll('.cpill').forEach(p => p.classList.toggle('active', p.dataset.color === activeColor));
+            render();
+        });
+        pillsRow.appendChild(btn);
+    });
+
+    /* ── events ── */
+    document.getElementById('searchInput').addEventListener('input', e => { searchQ = e.target.value.toLowerCase(); render(); });
+    document.getElementById('packFilter').addEventListener('change', e => { activePack = e.target.value; render(); });
+    document.getElementById('sortFilter').addEventListener('change', e => { sortMode = e.target.value; render(); });
+    document.getElementById('clearAll').addEventListener('click', () => {
+        activeColor = ''; activePack = ''; searchQ = ''; sortMode = '';
+        document.getElementById('searchInput').value = '';
+        document.getElementById('packFilter').value = '';
+        document.getElementById('sortFilter').value = '';
+        document.querySelectorAll('.cpill').forEach(p => p.classList.remove('active'));
+        render();
+    });
+
+    /* ── render products ── */
+    function render() {
+        let items = PRODUCTS.filter(p => p.status === 'ACTIVE');
+        if (searchQ)     items = items.filter(p => p.title.toLowerCase().includes(searchQ) || p.color_label.toLowerCase().includes(searchQ));
+        if (activeColor) items = items.filter(p => p.color_label === activeColor);
+        if (activePack)  items = items.filter(p => String(p.pack) === activePack);
+
+        if (sortMode === 'price-asc')  items.sort((a, b) => a.price - b.price);
+        if (sortMode === 'price-desc') items.sort((a, b) => b.price - a.price);
+        if (sortMode === 'discount')   items.sort((a, b) => b.discount - a.discount);
+        if (sortMode === 'pack-asc')   items.sort((a, b) => a.pack - b.pack);
+        if (sortMode === 'pack-desc')  items.sort((a, b) => b.pack - a.pack);
+
+        const n = items.length;
+        document.getElementById('countBadge').textContent = `${n} product${n !== 1 ? 's' : ''}`;
+        document.getElementById('heroCount').textContent  = `${n} product${n !== 1 ? 's' : ''} · Premium Metal · Free Delivery Across India`;
+
+        const grid  = document.getElementById('productsGrid');
+        const empty = document.getElementById('emptyState');
+
+        if (!n) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
+        empty.style.display = 'none';
+
+        grid.innerHTML = items.map(p => `
+            <a class="prod-card" href="product.html?id=${p.id}">
+                <div class="prod-img">
+                    <img src="${p.images[0]}" alt="${p.color_label} Curtain Knobs" loading="lazy">
+                    <span class="disc-badge">${p.discount}% OFF</span>
+                    <span class="pack-badge">Pack of ${p.pack}</span>
+                </div>
+                <div class="prod-body">
+                    <div class="prod-color">
+                        <span class="pcdot" style="background:${p.color_hex}"></span>
+                        <span>${p.color_label}</span>
+                    </div>
+                    <div class="prod-title">${p.title}</div>
+                    <div class="prod-pricing">
+                        <span class="pprice">${inr(p.price)}</span>
+                        <span class="pmrp">${inr(p.mrp)}</span>
+                        <span class="psave">Save ${p.discount}%</span>
+                    </div>
+                </div>
+            </a>`).join('');
+    }
+
+    render();
+
+    /* ── mobile menu ── */
+    const hbg = document.getElementById('hamburger');
+    const hdr = document.getElementById('header');
+    hbg.addEventListener('click', () => { hbg.classList.toggle('open'); hdr.classList.toggle('menu-open'); });
+</script>
+</body>
+</html>

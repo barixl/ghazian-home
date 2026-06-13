@@ -1,0 +1,502 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curtain Knobs — Ghazian Home</title>
+    <meta name="description" content="Premium curtain knobs and rod rail brackets by Ghazian Home Dubai.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #B8850A;
+            --green-dark: #8F6508;
+            --cream: #F5EDD5;
+            --cream-soft: #FAF4E4;
+            --ink: #1C1400;
+            --muted: #6B5C30;
+            --gold: #F0D870;
+            --line: #E8D8AA;
+            --red: #B93333;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Open Sans', system-ui, sans-serif; background: #FAF5E4; color: var(--ink); font-size: 15px; line-height: 1.6; overflow-x: hidden; }
+        img { display: block; max-width: 100%; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        button { font-family: inherit; }
+        .wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+        /* ── TOP STRIP ── */
+        .top-strip { background: var(--green); color: #fff; font-size: 13px; padding: 10px 0; }
+        .top-strip-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .top-left, .top-right { display: flex; align-items: center; gap: 14px; }
+        .phone-pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,.35); border-radius: 30px; padding: 4px 14px 4px 4px; }
+        .phone-pill .icon { width: 22px; height: 22px; background: #fff; color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+        .top-center { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+        .social-row { display: flex; gap: 8px; }
+        .social-row a { width: 24px; height: 24px; background: #fff; color: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; transition: transform .25s; }
+        .social-row a:hover { transform: translateY(-2px); }
+
+        /* ── HEADER ── */
+        .header { background: #fff; padding: 16px 0; position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 12px rgba(0,0,0,.04); }
+        .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .brand-mark { font-weight: 800; font-size: 32px; color: var(--green); font-style: italic; line-height: 1; }
+        .brand-text .name { font-weight: 700; font-size: 18px; color: var(--ink); font-style: italic; }
+        .brand-text .tag { font-size: 9px; letter-spacing: .18em; color: var(--muted); text-transform: uppercase; margin-top: 2px; display: flex; align-items: center; gap: 6px; }
+        .brand-text .tag::before, .brand-text .tag::after { content: ''; height: 1px; flex: 1; background: var(--line); }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links a { font-size: 14px; color: var(--ink); font-weight: 500; position: relative; padding: 6px 0; }
+        .nav-links a.active { color: var(--green); font-weight: 700; }
+        .nav-links a::after { content: ''; position: absolute; left: 50%; bottom: -2px; width: 0; height: 2px; background: var(--green); transition: all .3s; transform: translateX(-50%); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 60%; }
+        .book-btn { background: var(--green); color: #fff; border: none; padding: 11px 22px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: background .25s; }
+        .book-btn:hover { background: var(--green-dark); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
+        .hamburger span { width: 24px; height: 3px; background: var(--green); transition: .3s; border-radius: 2px; }
+        .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        /* ── BREADCRUMB ── */
+        .breadcrumb-bar { padding: 16px 0; border-bottom: 1px solid var(--line); background: var(--cream-soft); }
+        .breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
+        .breadcrumb a { color: var(--muted); transition: color .2s; }
+        .breadcrumb a:hover { color: var(--green); }
+        .breadcrumb .sep { opacity: .5; }
+        .breadcrumb .current { color: var(--ink); font-weight: 500; }
+
+        /* ── PRODUCT LAYOUT ── */
+        .product-page { padding: 40px 0 70px; }
+        .product-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+
+        /* ── IMAGE GALLERY ── */
+        .gallery-sticky { position: sticky; top: 90px; }
+        .main-img { background: var(--cream-soft); border: 1px solid var(--line); border-radius: 16px; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 12px; cursor: zoom-in; position: relative; }
+        .main-img img { width: 100%; height: 100%; object-fit: contain; padding: 24px; transition: transform .3s; }
+        .main-img:hover img { transform: scale(1.06); }
+        .disc-ribbon { position: absolute; top: 14px; left: 14px; background: var(--red); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+        .thumb-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .thumb { width: 68px; height: 68px; border-radius: 10px; border: 2px solid var(--line); overflow: hidden; cursor: pointer; background: #fff; flex-shrink: 0; transition: border-color .2s; }
+        .thumb:hover, .thumb.active { border-color: var(--green); }
+        .thumb img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
+
+        /* ── PRODUCT INFO ── */
+        .prod-info { padding-top: 4px; }
+        .prod-brand { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--green); font-weight: 700; margin-bottom: 8px; }
+        .prod-name { font-size: clamp(18px, 2.2vw, 24px); font-weight: 700; line-height: 1.3; color: var(--ink); margin-bottom: 18px; }
+        .price-block { margin-bottom: 6px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+        .price-main { font-size: 2rem; font-weight: 700; color: var(--ink); }
+        .price-mrp { font-size: 1rem; color: var(--muted); text-decoration: line-through; }
+        .price-pill { background: #FEF3C7; color: #92400E; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+        .savings-note { font-size: 13px; color: #2d6e2d; font-weight: 600; margin-bottom: 22px; }
+
+        /* meta grid */
+        .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-bottom: 22px; }
+        .meta-item { background: var(--cream-soft); padding: 13px 16px; }
+        .meta-item label { display: block; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+        .meta-item value { font-size: 14px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 6px; }
+        .color-chip { display: inline-block; width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,.12); vertical-align: middle; }
+
+        /* stock */
+        .stock-row { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: #2d6e2d; margin-bottom: 22px; }
+        .stock-dot { width: 8px; height: 8px; border-radius: 50%; background: #2d6e2d; }
+
+        /* buy button */
+        .btn-buy { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: var(--green); color: #fff; border: none; border-radius: 10px; padding: 16px 24px; font-size: 15px; font-weight: 700; cursor: pointer; transition: background .2s, transform .15s; text-decoration: none; margin-bottom: 12px; }
+        .btn-buy:hover { background: var(--green-dark); transform: translateY(-1px); }
+        .btn-quote { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; background: transparent; color: var(--green); border: 2px solid var(--green); border-radius: 10px; padding: 14px 24px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all .2s; }
+        .btn-quote:hover { background: var(--green); color: #fff; }
+        .sku-note { text-align: center; font-size: 11px; color: var(--muted); margin-top: 10px; }
+
+        /* trust badges */
+        .trust-row { display: flex; gap: 14px; margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+        .trust-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+        .trust-item .ticon { font-size: 18px; }
+
+        /* ── RELATED PRODUCTS ── */
+        .related-section { padding: 50px 0 70px; border-top: 1px solid var(--line); }
+        .related-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; gap: 14px; }
+        .related-header h2 { font-size: clamp(18px, 2vw, 22px); font-weight: 700; color: var(--ink); }
+        .related-header a { font-size: 13px; color: var(--green); font-weight: 600; border: 1px solid var(--green); border-radius: 6px; padding: 7px 16px; transition: all .2s; }
+        .related-header a:hover { background: var(--green); color: #fff; }
+        .related-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+
+        /* small card reused */
+        .prod-card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); cursor: pointer; transition: transform .22s, box-shadow .22s, border-color .22s; text-decoration: none; color: inherit; display: block; }
+        .prod-card:hover { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(0,0,0,.1); border-color: #c8b98a; }
+        .prod-img { position: relative; background: var(--cream-soft); aspect-ratio: 1/1; overflow: hidden; }
+        .prod-img img { width: 100%; height: 100%; object-fit: contain; padding: 12px; transition: transform .3s; }
+        .prod-card:hover .prod-img img { transform: scale(1.05); }
+        .disc-badge { position: absolute; top: 8px; left: 8px; background: var(--red); color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
+        .pack-badge { position: absolute; top: 8px; right: 8px; background: var(--green); color: #fff; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 4px; }
+        .prod-body { padding: 12px 13px 13px; border-top: 1px solid var(--line); }
+        .prod-color { display: flex; align-items: center; gap: 5px; margin-bottom: 4px; }
+        .pcdot { width: 9px; height: 9px; border-radius: 50%; border: 1px solid rgba(0,0,0,.1); flex-shrink: 0; }
+        .prod-color span { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+        .prod-title { font-size: 12px; font-weight: 600; color: var(--ink); line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .prod-pricing { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+        .pprice { font-size: 13px; font-weight: 700; color: var(--ink); }
+        .pmrp { font-size: 11px; color: var(--muted); text-decoration: line-through; }
+
+        /* ── NOT FOUND ── */
+        .not-found { text-align: center; padding: 100px 20px; }
+        .not-found h2 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+        .not-found p { color: var(--muted); margin-bottom: 24px; }
+        .not-found a { background: var(--green); color: #fff; padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+
+        /* ── FOOTER ── */
+        .footer { background: var(--green); color: #fff; padding: 50px 0 0; margin-top: 0; }
+        .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 30px; padding-bottom: 30px; }
+        .footer .brand-mark { color: #fff; }
+        .footer .brand-text .name { color: #fff; }
+        .footer .brand-text .tag { color: rgba(255,255,255,.6); }
+        .footer .brand-text .tag::before, .footer .brand-text .tag::after { background: rgba(255,255,255,.2); }
+        .footer-about { font-size: 12px; color: rgba(255,255,255,.7); line-height: 1.7; margin-bottom: 16px; margin-top: 14px; }
+        .footer-social { display: flex; gap: 8px; }
+        .footer-social a { width: 30px; height: 30px; background: rgba(255,255,255,.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; transition: background .25s; }
+        .footer-social a:hover { background: var(--gold); color: var(--green); }
+        .footer-col h5 { font-size: 14px; font-weight: 700; margin-bottom: 14px; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul a { font-size: 12px; color: rgba(255,255,255,.7); transition: color .25s; }
+        .footer-col ul a:hover { color: var(--gold); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,.15); padding: 18px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; font-size: 11px; color: rgba(255,255,255,.55); }
+        .footer-bottom-links { display: flex; gap: 24px; flex-wrap: wrap; }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:1024px) {
+            .related-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .header.menu-open .nav-links { display: flex; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; padding: 20px 24px; gap: 14px; border-top: 1px solid var(--line); box-shadow: 0 8px 16px rgba(0,0,0,.08); }
+            .header { position: relative; }
+            .header.menu-open { position: sticky; }
+        }
+        @media(max-width:768px) {
+            .product-layout { grid-template-columns: 1fr; gap: 32px; }
+            .gallery-sticky { position: static; }
+            .related-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media(max-width:680px) {
+            .wrap { padding: 0 14px; }
+            .top-center { display: none; }
+            .top-strip-inner { justify-content: center; }
+            .product-page { padding: 24px 0 50px; }
+            .trust-row { gap: 10px; }
+            .related-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media(max-width:400px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .meta-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP STRIP -->
+<div class="top-strip">
+    <div class="wrap top-strip-inner">
+        <div class="top-left">
+            <span class="phone-pill"><span class="icon">✆</span>+971 50 213 6026</span>
+        </div>
+        <div class="top-center">
+            <span>🚚</span><span>Free &amp; Fast Delivery Across UAE</span>
+        </div>
+        <div class="top-right social-row">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">◉</a>
+            <a href="#" aria-label="Pinterest">P</a>
+            <a href="#" aria-label="Twitter X">𝕏</a>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+    <div class="wrap nav">
+        <a href="ghazian.html" class="brand">
+            <span class="brand-mark">A</span>
+            <div class="brand-text">
+                <div class="name">Ghazian Home</div>
+                <div class="tag">Curtain Knobs and Blinds</div>
+            </div>
+        </a>
+        <nav class="nav-links" id="navLinks">
+            <a href="ghazian.html">Home</a>
+            <a href="ghazian.html#collections">Curtain Knobs</a>
+            <a href="ghazian.html#collections">Blinds</a>
+            <a href="ghazian.html#services">Services</a>
+            <a href="shop.html" class="active">Shop</a>
+            <a href="ghazian.html#about">About Us</a>
+            <a href="ghazian.html#contact">Contact Us</a>
+        </nav>
+        <div style="display:flex;align-items:center;gap:10px;">
+            <button class="book-btn" onclick="window.location.href='ghazian.html#contact'">Book Home Visit</button>
+            <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+    <div class="wrap">
+        <nav class="breadcrumb">
+            <a href="ghazian.html">Home</a>
+            <span class="sep">›</span>
+            <a href="shop.html">Shop</a>
+            <span class="sep">›</span>
+            <span class="current" id="bcTitle">Product</span>
+        </nav>
+    </div>
+</div>
+
+<!-- PRODUCT PAGE CONTENT -->
+<div id="productContent">
+    <div class="product-page">
+        <div class="wrap">
+            <div class="product-layout">
+                <!-- GALLERY -->
+                <div class="gallery-sticky">
+                    <div class="main-img" id="mainImgWrap">
+                        <img id="mainImg" src="" alt="">
+                        <span class="disc-ribbon" id="discRibbon"></span>
+                    </div>
+                    <div class="thumb-row" id="thumbRow"></div>
+                </div>
+                <!-- INFO -->
+                <div class="prod-info">
+                    <div class="prod-brand">Ghazian Home · Premium Curtain Knobs</div>
+                    <h1 class="prod-name" id="prodName"></h1>
+                    <div class="price-block">
+                        <span class="price-main" id="prodPrice"></span>
+                        <span class="price-mrp" id="prodMrp"></span>
+                        <span class="price-pill" id="prodDisc"></span>
+                    </div>
+                    <div class="savings-note" id="prodSavings"></div>
+                    <div class="meta-grid">
+                        <div class="meta-item">
+                            <label>Colour</label>
+                            <value id="metaColor"></value>
+                        </div>
+                        <div class="meta-item">
+                            <label>Pack Size</label>
+                            <value id="metaPack"></value>
+                        </div>
+                        <div class="meta-item">
+                            <label>Material</label>
+                            <value>Premium Metal</value>
+                        </div>
+                        <div class="meta-item">
+                            <label>SKU</label>
+                            <value id="metaSku"></value>
+                        </div>
+                    </div>
+                    <div class="stock-row">
+                        <span class="stock-dot"></span>
+                        <span id="stockLabel">In Stock · Ready to Ship</span>
+                    </div>
+                    <a class="btn-buy" id="buyBtn" href="#" target="_blank" rel="noopener">
+                        🛒 Buy on Flipkart
+                    </a>
+                    <a class="btn-quote" href="ghazian.html#contact">
+                        📞 Request a Quote
+                    </a>
+                    <p class="sku-note" id="skuNote"></p>
+                    <div class="trust-row">
+                        <div class="trust-item"><span class="ticon">🚚</span> Free Delivery across UAE</div>
+                        <div class="trust-item"><span class="ticon">✅</span> 100% Genuine Product</div>
+                        <div class="trust-item"><span class="ticon">🔧</span> Easy Installation</div>
+                        <div class="trust-item"><span class="ticon">↩</span> Hassle-free Returns</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RELATED PRODUCTS -->
+    <section class="related-section">
+        <div class="wrap">
+            <div class="related-header">
+                <h2 id="relatedTitle">More in This Colour</h2>
+                <a href="shop.html">View All Products →</a>
+            </div>
+            <div class="related-grid" id="relatedGrid"></div>
+        </div>
+    </section>
+</div>
+
+<!-- NOT FOUND STATE -->
+<div id="notFound" style="display:none;">
+    <div class="wrap not-found">
+        <h2>Product Not Found</h2>
+        <p>The product you're looking for doesn't exist or has been removed.</p>
+        <a href="shop.html">Browse All Products</a>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer-grid">
+            <div>
+                <div class="brand">
+                    <span class="brand-mark">A</span>
+                    <div class="brand-text">
+                        <div class="name">Ghazian Home</div>
+                        <div class="tag">Curtain Knobs and Blinds</div>
+                    </div>
+                </div>
+                <p class="footer-about">Premium curtain knobs and blinds for homes across UAE. Expertly designed and professionally installed.</p>
+                <div class="footer-social"><a href="#">f</a><a href="#">◉</a><a href="#">P</a><a href="#">𝕏</a></div>
+            </div>
+            <div class="footer-col">
+                <h5>Curtain Knobs</h5>
+                <ul>
+                    <li><a href="shop.html?color=Black">Blackout Curtain Knobs</a></li>
+                    <li><a href="shop.html">Motorized Curtain Knobs</a></li>
+                    <li><a href="shop.html">Sheer Curtain Knobs</a></li>
+                    <li><a href="shop.html?color=Maroon%2C+Gold">Velvet Curtain Knobs</a></li>
+                    <li><a href="shop.html">Eyelet Curtain Knobs</a></li>
+                    <li><a href="shop.html">Soundproof Curtain Knobs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>By Pack Size</h5>
+                <ul>
+                    <li><a href="shop.html?pack=4">Pack of 4</a></li>
+                    <li><a href="shop.html?pack=6">Pack of 6</a></li>
+                    <li><a href="shop.html?pack=12">Pack of 12</a></li>
+                    <li><a href="shop.html?pack=16">Pack of 16</a></li>
+                    <li><a href="shop.html?pack=20">Pack of 20</a></li>
+                    <li><a href="shop.html?pack=24">Pack of 24</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>By Space</h5>
+                <ul>
+                    <li><a href="ghazian.html">Bedroom</a></li>
+                    <li><a href="ghazian.html">Living Room</a></li>
+                    <li><a href="ghazian.html">Office</a></li>
+                    <li><a href="ghazian.html">Kitchen</a></li>
+                    <li><a href="ghazian.html">Dining Area</a></li>
+                    <li><a href="ghazian.html">Balcony</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>By Colour</h5>
+                <ul>
+                    <li><a href="shop.html?color=Red">Red Curtain Knobs</a></li>
+                    <li><a href="shop.html?color=Blue">Blue Curtain Knobs</a></li>
+                    <li><a href="shop.html?color=Green%2C+Gold">Green Curtain Knobs</a></li>
+                    <li><a href="shop.html?color=Pink%2C+Gold">Pink Curtain Knobs</a></li>
+                    <li><a href="shop.html?color=Silver">Silver Curtain Knobs</a></li>
+                    <li><a href="shop.html?color=Maroon%2C+Gold">Maroon Curtain Knobs</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© Ghazian Home 2026. All Rights Reserved.</span>
+            <div class="footer-bottom-links">
+                <a href="ghazian.html">Home</a><a href="shop.html">Shop</a>
+                <a href="ghazian.html#contact">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="products-data.js"></script>
+<script>
+    function inr(amount) { return '₹' + amount.toLocaleString('en-IN'); }
+
+    const params = new URLSearchParams(location.search);
+    const id = parseInt(params.get('id'), 10);
+    const product = PRODUCTS.find(p => p.id === id);
+
+    if (!product) {
+        document.getElementById('productContent').style.display = 'none';
+        document.getElementById('notFound').style.display = 'block';
+    } else {
+        /* ── page title ── */
+        document.title = `${product.color_label} Curtain Knobs — Ghazian Home`;
+        document.getElementById('bcTitle').textContent = `${product.color_label} Curtain Knobs`;
+
+        /* ── main info ── */
+        document.getElementById('prodName').textContent = product.title;
+        document.getElementById('prodPrice').textContent = inr(product.price);
+        document.getElementById('prodMrp').textContent = inr(product.mrp);
+        document.getElementById('prodDisc').textContent = product.discount + '% OFF';
+        document.getElementById('discRibbon').textContent = product.discount + '% OFF';
+        const savedAed = Math.round((product.mrp - product.price) * 0.044 / 5) * 5;
+        document.getElementById('prodSavings').textContent = `You save ${inr(product.mrp - product.price)} on this purchase`;
+        document.getElementById('metaColor').innerHTML = `<span class="color-chip" style="background:${product.color_hex}"></span>${product.color_label}`;
+        document.getElementById('metaPack').textContent = `Pack of ${product.pack}`;
+        document.getElementById('metaSku').textContent = product.sku;
+        document.getElementById('buyBtn').href = product.flipkart_url;
+        document.getElementById('skuNote').textContent = `SKU: ${product.sku} · FSN: ${product.fsn}`;
+
+        /* stock */
+        const stockEl = document.getElementById('stockLabel');
+        if (product.stock < 20) { stockEl.textContent = `Only ${product.stock} left in stock`; stockEl.parentElement.style.color = '#B93333'; stockEl.previousElementSibling.style.background = '#B93333'; }
+        else { stockEl.textContent = `In Stock · ${product.stock} units available`; }
+
+        /* ── image gallery ── */
+        const mainImg = document.getElementById('mainImg');
+        const thumbRow = document.getElementById('thumbRow');
+        mainImg.src = product.images[0];
+        mainImg.alt = product.color_label + ' Curtain Knobs';
+
+        product.images.forEach((src, i) => {
+            const th = document.createElement('div');
+            th.className = 'thumb' + (i === 0 ? ' active' : '');
+            th.innerHTML = `<img src="${src}" alt="View ${i+1}" loading="lazy">`;
+            th.addEventListener('click', () => {
+                mainImg.style.opacity = '0.7';
+                setTimeout(() => { mainImg.src = src; mainImg.style.opacity = '1'; }, 120);
+                document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+                th.classList.add('active');
+            });
+            thumbRow.appendChild(th);
+        });
+
+        /* ── related products ── */
+        const baseColor = product.color_label.split(',')[0].trim();
+        let related = PRODUCTS.filter(p => p.id !== product.id && p.color_label.includes(baseColor)).slice(0, 5);
+        if (related.length < 5) {
+            const extras = PRODUCTS.filter(p => p.id !== product.id && !related.find(r => r.id === p.id)).slice(0, 5 - related.length);
+            related = [...related, ...extras];
+        }
+
+        document.getElementById('relatedTitle').textContent = `More ${baseColor} Curtain Knobs`;
+        document.getElementById('relatedGrid').innerHTML = related.map(p => `
+            <a class="prod-card" href="product.html?id=${p.id}">
+                <div class="prod-img">
+                    <img src="${p.images[0]}" alt="${p.color_label} Curtain Knobs" loading="lazy">
+                    <span class="disc-badge">${p.discount}% OFF</span>
+                    <span class="pack-badge">Pack of ${p.pack}</span>
+                </div>
+                <div class="prod-body">
+                    <div class="prod-color">
+                        <span class="pcdot" style="background:${p.color_hex}"></span>
+                        <span>${p.color_label}</span>
+                    </div>
+                    <div class="prod-title">${p.title}</div>
+                    <div class="prod-pricing">
+                        <span class="pprice">${inr(p.price)}</span>
+                        <span class="pmrp">${inr(p.mrp)}</span>
+                    </div>
+                </div>
+            </a>`).join('');
+    }
+
+    /* ── mobile menu ── */
+    const hbg = document.getElementById('hamburger');
+    const hdr = document.getElementById('header');
+    hbg.addEventListener('click', () => { hbg.classList.toggle('open'); hdr.classList.toggle('menu-open'); });
+</script>
+</body>
+</html>
